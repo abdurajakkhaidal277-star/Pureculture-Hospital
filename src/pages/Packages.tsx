@@ -106,7 +106,7 @@ export const Packages: React.FC = () => {
               <h3 className="text-2xl font-bold text-neutral-900 mb-8">Inquiries & Booking</h3>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 flex-shrink-0">
+                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 flex-shrink-0">
                     <Phone size={24} />
                   </div>
                   <div>
@@ -116,7 +116,7 @@ export const Packages: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-blue-50 rounded-2xl flex items-center justify-center text-blue-600 flex-shrink-0">
+                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 flex-shrink-0">
                     <Mail size={24} />
                   </div>
                   <div>
@@ -141,12 +141,12 @@ export const Packages: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="bg-emerald-600 p-8 rounded-[2rem] text-white relative overflow-hidden"
+              className="bg-pink-600 p-8 rounded-[2rem] text-white relative overflow-hidden"
             >
               <div className="relative z-10">
-                <Heart className="mb-4 text-emerald-200" size={32} />
+                <Heart className="mb-4 text-pink-200" size={32} />
                 <h3 className="text-xl font-bold mb-2">Why Choose ZPMCH?</h3>
-                <p className="text-emerald-50 text-sm leading-relaxed">
+                <p className="text-pink-50 text-sm leading-relaxed">
                   With decades of experience in maternity and pediatric care, we provide a safe and nurturing environment for mothers and their newborns. Our dedicated team ensures that every delivery is handled with the utmost professional care.
                 </p>
               </div>

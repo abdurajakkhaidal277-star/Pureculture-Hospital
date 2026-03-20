@@ -52,7 +52,7 @@ export const AdminPanel: React.FC = () => {
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
             className={`px-6 py-3 rounded-xl font-bold flex items-center transition-all ${
-              activeTab === tab.id ? 'bg-white text-emerald-600 shadow-sm' : 'text-neutral-500'
+              activeTab === tab.id ? 'bg-white text-pink-600 shadow-sm' : 'text-neutral-500'
             }`}
           >
             <tab.icon size={18} className="mr-2" />
@@ -81,7 +81,7 @@ export const AdminPanel: React.FC = () => {
                     <span className={`px-2 py-1 rounded-md text-xs font-bold uppercase ${
                       user.role === 'admin' ? 'bg-purple-50 text-purple-700' :
                       user.role === 'doctor' ? 'bg-blue-50 text-blue-700' :
-                      'bg-emerald-50 text-emerald-700'
+                      'bg-pink-50 text-pink-700'
                     }`}>
                       {user.role}
                     </span>
@@ -107,14 +107,14 @@ export const AdminPanel: React.FC = () => {
               </div>
               <div className="flex items-center space-x-4">
                 <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                  app.status === 'confirmed' ? 'bg-emerald-50 text-emerald-700' : 'bg-neutral-100'
+                  app.status === 'confirmed' ? 'bg-pink-50 text-pink-700' : 'bg-neutral-100'
                 }`}>
                   {app.status}
                 </span>
                 {app.status === 'completed' && (
                   <button
                     onClick={() => generateInvoice(app)}
-                    className="text-emerald-600 font-bold text-sm hover:underline"
+                    className="text-pink-600 font-bold text-sm hover:underline"
                   >
                     Generate Invoice
                   </button>

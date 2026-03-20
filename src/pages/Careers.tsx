@@ -47,7 +47,7 @@ export const Careers: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-emerald-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-pink-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -55,7 +55,7 @@ export const Careers: React.FC = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">{t('careers')}</h1>
-            <p className="text-xl text-emerald-100 leading-relaxed">
+            <p className="text-xl text-pink-100 leading-relaxed">
               {t('joinOurTeam')}
             </p>
           </motion.div>
@@ -85,10 +85,10 @@ export const Careers: React.FC = () => {
                 className="p-8 rounded-[2rem] bg-neutral-50 border border-neutral-100 shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                  <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600">
                     <Briefcase size={24} />
                   </div>
-                  <span className="px-4 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+                  <span className="px-4 py-1 rounded-full bg-pink-100 text-pink-700 text-xs font-bold uppercase tracking-wider">
                     Full-Time
                   </span>
                 </div>
@@ -98,7 +98,7 @@ export const Careers: React.FC = () => {
                   <ul className="space-y-2">
                     {job.requirements.map((req, i) => (
                       <li key={i} className="flex items-start text-neutral-600 text-sm">
-                        <CheckCircle2 className="text-emerald-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
+                        <CheckCircle2 className="text-pink-500 mr-2 mt-0.5 flex-shrink-0" size={16} />
                         <span>{req}</span>
                       </li>
                     ))}
@@ -109,32 +109,32 @@ export const Careers: React.FC = () => {
           </div>
 
           {/* Application Info */}
-          <div className="mt-20 p-12 rounded-[3rem] bg-emerald-50 border border-emerald-100 text-center">
+          <div className="mt-20 p-12 rounded-[3rem] bg-pink-50 border border-pink-100 text-center">
             <h3 className="text-2xl font-bold text-neutral-900 mb-8">{t('applyNow')}</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 mb-4 shadow-sm">
+                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-pink-600 mb-4 shadow-sm">
                   <Mail size={24} />
                 </div>
                 <p className="text-sm text-neutral-500 mb-1">{t('sendCvTo')}</p>
-                <a href="mailto:zpc144hr@gmail.com" className="font-bold text-emerald-700 hover:underline">zpc144hr@gmail.com</a>
+                <a href="mailto:zpc144hr@gmail.com" className="font-bold text-pink-700 hover:underline">zpc144hr@gmail.com</a>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 mb-4 shadow-sm">
+                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-pink-600 mb-4 shadow-sm">
                   <Phone size={24} />
                 </div>
                 <p className="text-sm text-neutral-500 mb-1">{t('careerInquiry')}</p>
-                <p className="font-bold text-emerald-700">(062) 991-0379 / 0916 432 4390</p>
+                <p className="font-bold text-pink-700">(062) 991-0379 / 0916 432 4390</p>
               </div>
               <div className="flex flex-col items-center">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-emerald-600 mb-4 shadow-sm">
+                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-pink-600 mb-4 shadow-sm">
                   <Facebook size={24} />
                 </div>
                 <p className="text-sm text-neutral-500 mb-1">Visit us on Facebook</p>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-bold text-emerald-700 hover:underline">Zamboanga Puericulture Center Org. No. 144</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="font-bold text-pink-700 hover:underline">Zamboanga Puericulture Center Org. No. 144</a>
               </div>
             </div>
-            <p className="mt-12 text-emerald-600 font-bold italic">Don't miss this opportunity to advance your career with us! Apply now!</p>
+            <p className="mt-12 text-pink-600 font-bold italic">Don't miss this opportunity to advance your career with us! Apply now!</p>
           </div>
         </div>
       </section>

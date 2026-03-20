@@ -114,14 +114,14 @@ export const Chatbot: React.FC = () => {
             }`}
           >
             {/* Header */}
-            <div className="bg-emerald-600 p-4 text-white flex items-center justify-between">
+            <div className="bg-pink-600 p-4 text-white flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                   <MessageCircle size={24} />
                 </div>
                 <div>
                   <p className="font-bold leading-tight">ZPMCH Assistant</p>
-                  <p className="text-xs text-emerald-100">Online</p>
+                  <p className="text-xs text-pink-100">Online</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
@@ -152,7 +152,7 @@ export const Chatbot: React.FC = () => {
                       <div
                         className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${
                           m.role === 'user'
-                            ? 'bg-emerald-600 text-white rounded-tr-none'
+                            ? 'bg-pink-600 text-white rounded-tr-none'
                             : 'bg-white text-neutral-800 border border-neutral-100 shadow-sm rounded-tl-none'
                         }`}
                       >
@@ -163,7 +163,7 @@ export const Chatbot: React.FC = () => {
                   {isLoading && (
                     <div className="flex justify-start">
                       <div className="bg-white p-4 rounded-2xl rounded-tl-none border border-neutral-100 shadow-sm">
-                        <Loader2 className="animate-spin text-emerald-600" size={20} />
+                        <Loader2 className="animate-spin text-pink-600" size={20} />
                       </div>
                     </div>
                   )}
@@ -179,12 +179,12 @@ export const Chatbot: React.FC = () => {
                       onChange={(e) => setInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                       placeholder={t('typeMessage')}
-                      className="flex-grow bg-neutral-100 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-500 transition-all"
+                      className="flex-grow bg-neutral-100 border-none rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-pink-500 transition-all"
                     />
                     <button
                       onClick={handleSend}
                       disabled={isLoading || !input.trim()}
-                      className="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center hover:bg-emerald-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-200"
+                      className="w-12 h-12 bg-pink-600 text-white rounded-xl flex items-center justify-center hover:bg-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-pink-200"
                     >
                       <Send size={20} />
                     </button>
@@ -200,7 +200,7 @@ export const Chatbot: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className={`bg-emerald-600 text-white p-4 rounded-2xl shadow-2xl flex items-center space-x-3 hover:bg-emerald-700 transition-all ${
+        className={`bg-pink-600 text-white p-4 rounded-2xl shadow-2xl flex items-center space-x-3 hover:bg-pink-700 transition-all ${
           isOpen ? 'hidden' : 'flex'
         }`}
       >

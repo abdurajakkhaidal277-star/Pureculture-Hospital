@@ -31,7 +31,7 @@ export interface Appointment {
   notes?: string;
 }
 
-export type InvoiceStatus = 'unpaid' | 'paid';
+export type InvoiceStatus = 'unpaid' | 'paid' | 'pending_verification';
 
 export interface Invoice {
   id: string;

@@ -37,19 +37,19 @@ export const Billing: React.FC = () => {
 
   const handlePay = async (invoiceId: string) => {
     setPayingId(invoiceId);
-    // Simulate payment processing
+    // Simulate payment verification request
     setTimeout(async () => {
       try {
         await updateDoc(doc(db, 'invoices', invoiceId), {
-          status: 'paid'
+          status: 'pending_verification'
         });
-        alert(`${t('paymentSuccessful')} via ${t(selectedMethod === 'bank' ? 'bankTransfer' : selectedMethod)}!`);
+        alert(`${t('paymentPending')}! Our team will verify your payment soon.`);
       } catch (err) {
         console.error("Payment error:", err);
       } finally {
         setPayingId(null);
       }
-    }, 2000);
+    }, 1500);
   };
 
   if (!profile) return null;
@@ -63,7 +63,7 @@ export const Billing: React.FC = () => {
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-600"></div>
         </div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -74,34 +74,47 @@ export const Billing: React.FC = () => {
                   key={inv.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm flex items-center justify-between"
+                  className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6"
                 >
                   <div className="flex items-center space-x-4">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                      inv.status === 'paid' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
+                      inv.status === 'paid' ? 'bg-pink-50 text-pink-600' : 
+                      inv.status === 'pending_verification' ? 'bg-blue-50 text-blue-600' : 'bg-amber-50 text-amber-600'
                     }`}>
-                      {inv.status === 'paid' ? <CheckCircle2 size={24} /> : <AlertCircle size={24} />}
+                      {inv.status === 'paid' ? <CheckCircle2 size={24} /> : 
+                       inv.status === 'pending_verification' ? <Loader2 className="animate-spin" size={24} /> : <AlertCircle size={24} />}
                     </div>
                     <div>
                       <h3 className="font-bold text-neutral-900">Invoice #{inv.id.slice(0, 8)}</h3>
                       <p className="text-sm text-neutral-500">
                         {format(inv.createdAt.toDate(), 'MMMM d, yyyy')}
                       </p>
+                      {inv.status === 'pending_verification' && (
+                        <p className="text-xs text-blue-600 font-bold mt-1 uppercase tracking-wider">{t('paymentPending')}</p>
+                      )}
                     </div>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right flex flex-col items-end">
                     <p className="text-xl font-bold text-neutral-900 mb-2">₱{inv.totalAmount.toLocaleString()}</p>
                     {inv.status === 'unpaid' ? (
-                      <button
-                        onClick={() => handlePay(inv.id)}
-                        disabled={payingId === inv.id}
-                        className="bg-emerald-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-emerald-700 transition-all flex items-center disabled:opacity-70"
-                      >
-                        {payingId === inv.id ? <Loader2 className="animate-spin mr-2" size={18} /> : t('payNow')}
-                      </button>
-                    ) : (
-                      <span className="text-emerald-600 font-bold text-sm uppercase tracking-wider">{t('paid')}</span>
-                    )}
+                      <div className="flex flex-col items-end gap-3">
+                        <div className="text-xs text-neutral-500 max-w-[200px] text-right italic">
+                          {selectedMethod === 'gcash' && t('gcashInstructions')}
+                          {selectedMethod === 'maya' && t('mayaInstructions')}
+                          {selectedMethod === 'bank' && t('bankInstructions')}
+                          {selectedMethod === 'crypto' && t('cryptoInstructions')}
+                        </div>
+                        <button
+                          onClick={() => handlePay(inv.id)}
+                          disabled={payingId === inv.id}
+                          className="bg-pink-600 text-white px-6 py-2 rounded-xl font-bold hover:bg-pink-700 transition-all flex items-center disabled:opacity-70"
+                        >
+                          {payingId === inv.id ? <Loader2 className="animate-spin mr-2" size={18} /> : t('confirmPayment')}
+                        </button>
+                      </div>
+                    ) : inv.status === 'paid' ? (
+                      <span className="text-pink-600 font-bold text-sm uppercase tracking-wider">{t('paid')}</span>
+                    ) : null}
                   </div>
                 </motion.div>
               ))
@@ -121,63 +134,63 @@ export const Billing: React.FC = () => {
                   <button
                     onClick={() => setSelectedMethod('gcash')}
                     className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
-                      selectedMethod === 'gcash' ? 'bg-white/10 border-emerald-500' : 'bg-white/5 border-white/5'
+                      selectedMethod === 'gcash' ? 'bg-white/10 border-pink-500' : 'bg-white/5 border-white/5'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-6 bg-blue-500 rounded flex items-center justify-center text-[10px] font-bold">GCash</div>
                       <span className="font-medium">{t('gcash')}</span>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'gcash' ? 'border-emerald-500 bg-emerald-500' : 'border-white/20'}`}></div>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'gcash' ? 'border-pink-500 bg-pink-500' : 'border-white/20'}`}></div>
                   </button>
 
                   {/* Maya */}
                   <button
                     onClick={() => setSelectedMethod('maya')}
                     className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
-                      selectedMethod === 'maya' ? 'bg-white/10 border-emerald-500' : 'bg-white/5 border-white/5'
+                      selectedMethod === 'maya' ? 'bg-white/10 border-pink-500' : 'bg-white/5 border-white/5'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-6 bg-neutral-700 rounded flex items-center justify-center text-[10px] font-bold italic">Maya</div>
                       <span className="font-medium">{t('maya')}</span>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'maya' ? 'border-emerald-500 bg-emerald-500' : 'border-white/20'}`}></div>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'maya' ? 'border-pink-500 bg-pink-500' : 'border-white/20'}`}></div>
                   </button>
 
                   {/* Bank Transfer */}
                   <button
                     onClick={() => setSelectedMethod('bank')}
                     className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
-                      selectedMethod === 'bank' ? 'bg-white/10 border-emerald-500' : 'bg-white/5 border-white/5'
+                      selectedMethod === 'bank' ? 'bg-white/10 border-pink-500' : 'bg-white/5 border-white/5'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-6 bg-neutral-600 rounded flex items-center justify-center text-[10px] font-bold">BANK</div>
                       <span className="font-medium">{t('bankTransfer')}</span>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'bank' ? 'border-emerald-500 bg-emerald-500' : 'border-white/20'}`}></div>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'bank' ? 'border-pink-500 bg-pink-500' : 'border-white/20'}`}></div>
                   </button>
 
                   {/* Crypto */}
                   <button
                     onClick={() => setSelectedMethod('crypto')}
                     className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
-                      selectedMethod === 'crypto' ? 'bg-white/10 border-emerald-500' : 'bg-white/5 border-white/5'
+                      selectedMethod === 'crypto' ? 'bg-white/10 border-pink-500' : 'bg-white/5 border-white/5'
                     }`}
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-6 bg-amber-500 rounded flex items-center justify-center text-[10px] font-bold">BTC</div>
                       <span className="font-medium">{t('crypto')}</span>
                     </div>
-                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'crypto' ? 'border-emerald-500 bg-emerald-500' : 'border-white/20'}`}></div>
+                    <div className={`w-4 h-4 rounded-full border-2 ${selectedMethod === 'crypto' ? 'border-pink-500 bg-pink-500' : 'border-white/20'}`}></div>
                   </button>
                 </div>
                 <p className="text-sm text-neutral-400 leading-relaxed">
                   {t('securePayments')}
                 </p>
               </div>
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
             </div>
           </div>
         </div>

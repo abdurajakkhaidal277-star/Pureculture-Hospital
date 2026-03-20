@@ -175,7 +175,7 @@ export const Doctors: React.FC = () => {
         <input
           type="text"
           placeholder={t('searchPlaceholder') || "Search by name or specialization..."}
-          className="w-full pl-12 pr-4 py-4 bg-white border border-neutral-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
+          className="w-full pl-12 pr-4 py-4 bg-white border border-neutral-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -184,12 +184,12 @@ export const Doctors: React.FC = () => {
       {/* Hospital Doctors */}
       <div className="mb-20">
         <h2 className="text-2xl font-bold text-neutral-900 mb-8 flex items-center">
-          <Building2 className="mr-2 text-emerald-600" />
+          <Building2 className="mr-2 text-pink-600" />
           {t('hospitalStaff')}
         </h2>
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-600"></div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -199,11 +199,11 @@ export const Doctors: React.FC = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-3xl border border-neutral-100 shadow-sm overflow-hidden hover:shadow-xl transition-all"
               >
-                <div className="h-48 bg-emerald-50 relative">
-                  <div className="absolute inset-0 flex items-center justify-center text-emerald-200">
+                <div className="h-48 bg-pink-50 relative">
+                  <div className="absolute inset-0 flex items-center justify-center text-pink-200">
                     <User size={80} />
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-emerald-700 shadow-sm">
+                  <div className="absolute bottom-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-bold text-pink-700 shadow-sm">
                     {doc.specialization || t('generalPractitioner')}
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export const Doctors: React.FC = () => {
                   </div>
                   <Link
                     to="/login"
-                    className="block w-full text-center bg-emerald-600 text-white py-3 rounded-xl font-bold hover:bg-emerald-700 transition-all"
+                    className="block w-full text-center bg-pink-600 text-white py-3 rounded-xl font-bold hover:bg-pink-700 transition-all"
                   >
                     {t('bookConsultation')}
                   </Link>
@@ -233,11 +233,11 @@ export const Doctors: React.FC = () => {
 
       {/* Hospital Annex - Private Clinics */}
       <div className="mt-24">
-        <div className="bg-emerald-900 rounded-[3rem] p-12 md:p-16 text-white mb-16">
+        <div className="bg-pink-900 rounded-[3rem] p-12 md:p-16 text-white mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
             {t('outpatientUnit')}
           </h2>
-          <p className="text-emerald-100 text-lg max-w-2xl">
+          <p className="text-pink-100 text-lg max-w-2xl">
             {t('privateClinics')} {t('privateClinicsDesc')}
           </p>
         </div>
@@ -253,13 +253,13 @@ export const Doctors: React.FC = () => {
             >
               <div className="bg-neutral-50 px-8 py-4 border-b border-neutral-100 flex justify-between items-center">
                 <span className="text-sm font-bold text-neutral-400 uppercase tracking-widest">{t('unit')}</span>
-                <span className="text-2xl font-black text-emerald-600">{clinic.unit}</span>
+                <span className="text-2xl font-black text-pink-600">{clinic.unit}</span>
               </div>
               <div className="p-8 space-y-8">
                 {clinic.doctors.map((doc, idx) => (
                   <div key={idx} className={idx !== 0 ? 'pt-8 border-t border-neutral-50' : ''}>
                     <h3 className="text-xl font-bold text-neutral-900 mb-2">{doc.name}</h3>
-                    <p className="text-emerald-600 font-medium mb-4">{doc.specialization}</p>
+                    <p className="text-pink-600 font-medium mb-4">{doc.specialization}</p>
                     
                     <div className="space-y-3">
                       <div className="flex items-start space-x-3 text-sm text-neutral-600">
@@ -271,7 +271,7 @@ export const Doctors: React.FC = () => {
                           <Phone size={18} className="text-neutral-400 flex-shrink-0 mt-0.5" />
                           <div className="flex flex-col">
                             <span className="font-bold text-neutral-900">{t('appointment')}:</span>
-                            <a href={`tel:${doc.contact}`} className="hover:text-emerald-600 transition-colors">{doc.contact}</a>
+                            <a href={`tel:${doc.contact}`} className="hover:text-pink-600 transition-colors">{doc.contact}</a>
                           </div>
                         </div>
                       )}

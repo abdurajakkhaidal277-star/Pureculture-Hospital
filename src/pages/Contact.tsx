@@ -9,7 +9,7 @@ export const Contact: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-emerald-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-pink-900 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export const Contact: React.FC = () => {
             className="text-center max-w-3xl mx-auto"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">{t('contactUs')}</h1>
-            <p className="text-xl text-emerald-100 leading-relaxed">
+            <p className="text-xl text-pink-100 leading-relaxed">
               {t('contactDesc')}
             </p>
           </motion.div>
@@ -37,14 +37,14 @@ export const Contact: React.FC = () => {
               whileHover={{ y: -5 }}
               className="p-10 rounded-[2.5rem] bg-neutral-50 border border-neutral-100 text-center"
             >
-              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-8">
+              <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 mx-auto mb-8">
                 <Phone size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('phone')}</h3>
               <p className="text-neutral-600 mb-6">{t('phoneDesc')}</p>
               <div className="space-y-2">
-                <a href="tel:0629910379" className="block text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">(062) 991 0379</a>
-                <a href="tel:09171631740" className="block text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">0917 163 1740</a>
+                <a href="tel:0629910379" className="block text-xl font-bold text-pink-600 hover:text-pink-700 transition-colors">(062) 991 0379</a>
+                <a href="tel:09171631740" className="block text-xl font-bold text-pink-600 hover:text-pink-700 transition-colors">0917 163 1740</a>
               </div>
             </motion.div>
 
@@ -53,12 +53,12 @@ export const Contact: React.FC = () => {
               whileHover={{ y: -5 }}
               className="p-10 rounded-[2.5rem] bg-neutral-50 border border-neutral-100 text-center"
             >
-              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-8">
+              <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 mx-auto mb-8">
                 <Mail size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('email')}</h3>
               <p className="text-neutral-600 mb-6">{t('emailDesc')}</p>
-              <a href="mailto:zpc144@gmail.com" className="text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">zpc144@gmail.com</a>
+              <a href="mailto:zpc144@gmail.com" className="text-xl font-bold text-pink-600 hover:text-pink-700 transition-colors">zpc144@gmail.com</a>
             </motion.div>
 
             {/* Location */}
@@ -66,7 +66,7 @@ export const Contact: React.FC = () => {
               whileHover={{ y: -5 }}
               className="p-10 rounded-[2.5rem] bg-neutral-50 border border-neutral-100 text-center"
             >
-              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-8">
+              <div className="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-pink-600 mx-auto mb-8">
                 <MapPin size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('location')}</h3>
@@ -86,7 +86,7 @@ export const Contact: React.FC = () => {
               <div className="space-y-6">
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
                   <span className="text-neutral-400">{t('emergencyCare')}</span>
-                  <span className="font-bold text-emerald-400">{t('available247')}</span>
+                  <span className="font-bold text-pink-400">{t('available247')}</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
                   <span className="text-neutral-400">{t('outpatientClinics')}</span>
@@ -103,13 +103,13 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className="mt-12 flex space-x-6">
-                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-emerald-600 transition-all">
+                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-all">
                   <Facebook size={24} />
                 </a>
-                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-emerald-600 transition-all">
+                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-all">
                   <Instagram size={24} />
                 </a>
-                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-emerald-600 transition-all">
+                <a href="#" className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-pink-600 transition-all">
                   <MessageSquare size={24} />
                 </a>
               </div>
@@ -122,10 +122,10 @@ export const Contact: React.FC = () => {
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="bg-emerald-600 p-8 rounded-[2.5rem] shadow-2xl text-center max-w-xs">
+                <div className="bg-pink-600 p-8 rounded-[2.5rem] shadow-2xl text-center max-w-xs">
                   <MapPin size={48} className="mx-auto mb-4" />
                   <p className="font-bold text-xl mb-2">ZPMCH</p>
-                  <p className="text-emerald-100 text-sm">Zamboanga Puericulture Maternity and Children’s Hospital</p>
+                  <p className="text-pink-100 text-sm">Zamboanga Puericulture Maternity and Children’s Hospital</p>
                 </div>
               </div>
             </div>

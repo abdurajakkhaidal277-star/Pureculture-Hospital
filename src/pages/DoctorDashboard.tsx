@@ -82,7 +82,7 @@ export const DoctorDashboard: React.FC = () => {
                 <>
                   <button
                     onClick={() => handleStatusUpdate(app.id, 'confirmed')}
-                    className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-xl transition-colors"
+                    className="p-2 text-pink-600 hover:bg-pink-50 rounded-xl transition-colors"
                     title="Confirm"
                   >
                     <CheckCircle2 size={24} />
@@ -99,14 +99,14 @@ export const DoctorDashboard: React.FC = () => {
               {app.status === 'confirmed' && (
                 <button
                   onClick={() => setSelectedApp(app)}
-                  className="bg-emerald-600 text-white px-4 py-2 rounded-xl font-bold flex items-center text-sm"
+                  className="bg-pink-600 text-white px-4 py-2 rounded-xl font-bold flex items-center text-sm"
                 >
                   <FilePlus size={18} className="mr-2" />
                   Prescribe
                 </button>
               )}
               <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                app.status === 'confirmed' ? 'bg-emerald-50 text-emerald-700' :
+                app.status === 'confirmed' ? 'bg-pink-50 text-pink-700' :
                 app.status === 'pending' ? 'bg-amber-50 text-amber-700' :
                 app.status === 'completed' ? 'bg-blue-50 text-blue-700' :
                 'bg-neutral-100 text-neutral-700'
@@ -136,7 +136,7 @@ export const DoctorDashboard: React.FC = () => {
               </div>
               <p className="text-neutral-500 mb-4">Patient: <span className="font-bold text-neutral-900">{selectedApp.patientName}</span></p>
               <textarea
-                className="w-full h-40 p-4 bg-neutral-50 border border-neutral-200 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all mb-6"
+                className="w-full h-40 p-4 bg-neutral-50 border border-neutral-200 rounded-2xl focus:ring-2 focus:ring-pink-500 outline-none transition-all mb-6"
                 placeholder="Enter medication, dosage, and instructions..."
                 value={prescriptionText}
                 onChange={(e) => setPrescriptionText(e.target.value)}
@@ -144,7 +144,7 @@ export const DoctorDashboard: React.FC = () => {
               <button
                 onClick={handlePrescribe}
                 disabled={isPrescribing || !prescriptionText}
-                className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all flex items-center justify-center disabled:opacity-70"
+                className="w-full bg-pink-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-pink-700 transition-all flex items-center justify-center disabled:opacity-70"
               >
                 {isPrescribing ? <Loader2 className="animate-spin" size={24} /> : 'Complete & Issue'}
               </button>

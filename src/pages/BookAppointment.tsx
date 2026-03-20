@@ -7,17 +7,22 @@ import { UserProfile } from '../types';
 import { motion } from 'framer-motion';
 import { Calendar as CalendarIcon, Clock, User, CheckCircle2, ChevronRight, Loader2 } from 'lucide-react';
 import { format, addDays, startOfToday } from 'date-fns';
+import { useLanguage } from '../LanguageContext';
 
 export const BookAppointment: React.FC = () => {
   const { profile } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [doctors, setDoctors] = useState<UserProfile[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<UserProfile | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [selectedPayment, setSelectedPayment] = useState<'gcash' | 'maya' | 'bank' | 'crypto'>('gcash');
   const [loading, setLoading] = useState(false);
   const [fetchingDoctors, setFetchingDoctors] = useState(true);
+
+  const consultationFee = 500;
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -48,6 +53,7 @@ export const BookAppointment: React.FC = () => {
       const appointmentDate = new Date(selectedDate);
       appointmentDate.setHours(finalHours, parseInt(minutes), 0, 0);
 
+      // Create appointment
       await addDoc(collection(db, 'appointments'), {
         patientId: profile.uid,
         doctorId: selectedDoctor.uid,
@@ -55,6 +61,17 @@ export const BookAppointment: React.FC = () => {
         doctorName: selectedDoctor.name,
         date: Timestamp.fromDate(appointmentDate),
         status: 'pending',
+        createdAt: serverTimestamp(),
+      });
+
+      // Create invoice
+      await addDoc(collection(db, 'invoices'), {
+        patientId: profile.uid,
+        patientName: profile.name,
+        totalAmount: consultationFee,
+        status: 'unpaid',
+        paymentMethod: selectedPayment,
+        description: `Consultation with Dr. ${selectedDoctor.name}`,
         createdAt: serverTimestamp(),
       });
 
@@ -74,13 +91,13 @@ export const BookAppointment: React.FC = () => {
         {[1, 2, 3].map((s) => (
           <React.Fragment key={s}>
             <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
-              step >= s ? 'bg-emerald-600 text-white' : 'bg-neutral-200 text-neutral-500'
+              step >= s ? 'bg-pink-600 text-white' : 'bg-neutral-200 text-neutral-500'
             }`}>
               {s}
             </div>
             {s < 3 && (
               <div className={`w-20 h-1 mx-2 rounded ${
-                step > s ? 'bg-emerald-600' : 'bg-neutral-200'
+                step > s ? 'bg-pink-600' : 'bg-neutral-200'
               }`}></div>
             )}
           </React.Fragment>
@@ -95,25 +112,25 @@ export const BookAppointment: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
           >
-            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">Select a Specialist</h2>
+            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">{t('selectSpecialist')}</h2>
             {fetchingDoctors ? (
-              <div className="flex justify-center py-12"><Loader2 className="animate-spin text-emerald-600" size={32} /></div>
+              <div className="flex justify-center py-12"><Loader2 className="animate-spin text-pink-600" size={32} /></div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {doctors.map((doc) => (
                   <button
                     key={doc.uid}
                     onClick={() => { setSelectedDoctor(doc); setStep(2); }}
-                    className="flex items-center p-6 bg-white border border-neutral-200 rounded-3xl hover:border-emerald-600 hover:shadow-lg transition-all text-left group"
+                    className="flex items-center p-6 bg-white border border-neutral-200 rounded-3xl hover:border-pink-600 hover:shadow-lg transition-all text-left group"
                   >
-                    <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mr-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <div className="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 mr-4 group-hover:bg-pink-600 group-hover:text-white transition-colors">
                       <User size={32} />
                     </div>
                     <div className="flex-grow">
                       <p className="font-bold text-neutral-900 text-lg">Dr. {doc.name}</p>
                       <p className="text-neutral-500">{doc.specialization || 'General Practitioner'}</p>
                     </div>
-                    <ChevronRight className="text-neutral-300 group-hover:text-emerald-600" />
+                    <ChevronRight className="text-neutral-300 group-hover:text-pink-600" />
                   </button>
                 ))}
               </div>
@@ -128,11 +145,11 @@ export const BookAppointment: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
           >
-            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">Select Date & Time</h2>
+            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">{t('selectDateTime')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
                 <h3 className="font-bold text-neutral-700 mb-4 flex items-center">
-                  <CalendarIcon className="mr-2" size={20} /> Available Dates
+                  <CalendarIcon className="mr-2" size={20} /> {t('availableDates')}
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
                   {[...Array(9)].map((_, i) => {
@@ -143,7 +160,7 @@ export const BookAppointment: React.FC = () => {
                         key={i}
                         onClick={() => setSelectedDate(date)}
                         className={`p-4 rounded-2xl border text-center transition-all ${
-                          isSelected ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-neutral-200 hover:border-emerald-600'
+                          isSelected ? 'bg-pink-600 border-pink-600 text-white' : 'bg-white border-neutral-200 hover:border-pink-600'
                         }`}
                       >
                         <p className="text-xs font-bold uppercase">{format(date, 'EEE')}</p>
@@ -155,7 +172,7 @@ export const BookAppointment: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-neutral-700 mb-4 flex items-center">
-                  <Clock className="mr-2" size={20} /> Available Slots
+                  <Clock className="mr-2" size={20} /> {t('availableSlots')}
                 </h3>
                 <div className="grid grid-cols-2 gap-2">
                   {timeSlots.map((time) => (
@@ -164,7 +181,7 @@ export const BookAppointment: React.FC = () => {
                       disabled={!selectedDate}
                       onClick={() => setSelectedTime(time)}
                       className={`p-4 rounded-2xl border text-center font-bold transition-all disabled:opacity-50 ${
-                        selectedTime === time ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-neutral-200 hover:border-emerald-600'
+                        selectedTime === time ? 'bg-pink-600 border-pink-600 text-white' : 'bg-white border-neutral-200 hover:border-pink-600'
                       }`}
                     >
                       {time}
@@ -174,13 +191,13 @@ export const BookAppointment: React.FC = () => {
               </div>
             </div>
             <div className="mt-12 flex justify-between">
-              <button onClick={() => setStep(1)} className="px-8 py-3 font-bold text-neutral-500 hover:text-neutral-900">Back</button>
+              <button onClick={() => setStep(1)} className="px-8 py-3 font-bold text-neutral-500 hover:text-neutral-900">{t('back')}</button>
               <button
                 disabled={!selectedDate || !selectedTime}
                 onClick={() => setStep(3)}
-                className="bg-emerald-600 text-white px-10 py-3 rounded-2xl font-bold hover:bg-emerald-700 disabled:opacity-50"
+                className="bg-pink-600 text-white px-10 py-3 rounded-2xl font-bold hover:bg-pink-700 disabled:opacity-50"
               >
-                Continue
+                {t('continue')}
               </button>
             </div>
           </motion.div>
@@ -192,39 +209,78 @@ export const BookAppointment: React.FC = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="max-w-md mx-auto"
+            className="max-w-2xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">Confirm Booking</h2>
-            <div className="bg-white border border-neutral-200 rounded-3xl p-8 shadow-sm space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
-                  <User size={24} />
+            <h2 className="text-3xl font-bold text-neutral-900 mb-8 text-center tracking-tight">{t('confirmBooking')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white border border-neutral-200 rounded-3xl p-8 shadow-sm space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600">
+                    <User size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-neutral-500">{t('doctor')}</p>
+                    <p className="font-bold text-neutral-900">Dr. {selectedDoctor?.name}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-neutral-500">Doctor</p>
-                  <p className="font-bold text-neutral-900">Dr. {selectedDoctor?.name}</p>
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600">
+                    <CalendarIcon size={24} />
+                  </div>
+                  <div>
+                    <p className="text-sm text-neutral-500">{t('dateTime')}</p>
+                    <p className="font-bold text-neutral-900">
+                      {selectedDate && format(selectedDate, 'MMMM d, yyyy')} at {selectedTime}
+                    </p>
+                  </div>
+                </div>
+                <div className="pt-6 border-t border-neutral-100">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-neutral-500">{t('consultationFee')}</span>
+                    <span className="text-xl font-bold text-neutral-900">₱{consultationFee}</span>
+                  </div>
+                  
+                  {/* Payment Instructions Display */}
+                  <div className="mb-6 p-4 bg-pink-50 rounded-2xl border border-pink-100">
+                    <p className="text-xs font-bold text-pink-700 uppercase mb-2">{t('paymentInstructions')}</p>
+                    <p className="text-sm text-neutral-700 leading-relaxed">
+                      {selectedPayment === 'gcash' && t('gcashInstructions')}
+                      {selectedPayment === 'maya' && t('mayaInstructions')}
+                      {selectedPayment === 'bank' && t('bankInstructions')}
+                      {selectedPayment === 'crypto' && t('cryptoInstructions')}
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={handleBooking}
+                    disabled={loading}
+                    className="w-full bg-pink-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-pink-700 transition-all flex items-center justify-center disabled:opacity-70"
+                  >
+                    {loading ? <Loader2 className="animate-spin" size={24} /> : t('confirmAppointment')}
+                  </button>
+                  <button onClick={() => setStep(2)} className="w-full mt-4 py-2 text-neutral-500 font-bold hover:text-neutral-900">{t('editDetails')}</button>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
-                  <CalendarIcon size={24} />
+
+              <div className="bg-neutral-900 text-white p-8 rounded-3xl shadow-xl">
+                <h3 className="font-bold mb-6">{t('selectPaymentMethod')}</h3>
+                <div className="space-y-3">
+                  {['gcash', 'maya', 'bank', 'crypto'].map((method) => (
+                    <button
+                      key={method}
+                      onClick={() => setSelectedPayment(method as any)}
+                      className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${
+                        selectedPayment === method ? 'bg-white/10 border-pink-500' : 'bg-white/5 border-white/5'
+                      }`}
+                    >
+                      <span className="font-medium capitalize">{t(method === 'bank' ? 'bankTransfer' : method)}</span>
+                      <div className={`w-4 h-4 rounded-full border-2 ${selectedPayment === method ? 'border-pink-500 bg-pink-500' : 'border-white/20'}`}></div>
+                    </button>
+                  ))}
                 </div>
-                <div>
-                  <p className="text-sm text-neutral-500">Date & Time</p>
-                  <p className="font-bold text-neutral-900">
-                    {selectedDate && format(selectedDate, 'MMMM d, yyyy')} at {selectedTime}
-                  </p>
-                </div>
-              </div>
-              <div className="pt-6 border-t border-neutral-100">
-                <button
-                  onClick={handleBooking}
-                  disabled={loading}
-                  className="w-full bg-emerald-600 text-white py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all flex items-center justify-center disabled:opacity-70"
-                >
-                  {loading ? <Loader2 className="animate-spin" size={24} /> : 'Confirm Appointment'}
-                </button>
-                <button onClick={() => setStep(2)} className="w-full mt-4 py-2 text-neutral-500 font-bold hover:text-neutral-900">Edit Details</button>
+                <p className="mt-6 text-xs text-neutral-400 leading-relaxed">
+                  {t('securePayments')}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -237,10 +293,10 @@ export const BookAppointment: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="text-center py-12"
           >
-            <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
+            <div className="w-24 h-24 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mx-auto mb-8">
               <CheckCircle2 size={48} />
             </div>
-            <h2 className="text-4xl font-bold text-neutral-900 mb-4 tracking-tight">Booking Confirmed!</h2>
+            <h2 className="text-4xl font-bold text-neutral-900 mb-4 tracking-tight">{t('bookingConfirmed')}</h2>
             <p className="text-lg text-neutral-600 mb-12 max-w-md mx-auto">
               Your appointment with Dr. {selectedDoctor?.name} has been successfully scheduled. You can view details in your dashboard.
             </p>
@@ -248,7 +304,7 @@ export const BookAppointment: React.FC = () => {
               onClick={() => navigate('/dashboard')}
               className="bg-neutral-900 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-neutral-800 transition-all"
             >
-              Go to Dashboard
+              {t('goToDashboard')}
             </button>
           </motion.div>
         )}

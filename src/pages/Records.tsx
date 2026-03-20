@@ -58,7 +58,7 @@ export const Records: React.FC = () => {
         <button
           onClick={() => setActiveTab('prescriptions')}
           className={`px-6 py-3 rounded-xl font-bold transition-all ${
-            activeTab === 'prescriptions' ? 'bg-white text-emerald-600 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'
+            activeTab === 'prescriptions' ? 'bg-white text-pink-600 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'
           }`}
         >
           Prescriptions
@@ -66,7 +66,7 @@ export const Records: React.FC = () => {
         <button
           onClick={() => setActiveTab('labs')}
           className={`px-6 py-3 rounded-xl font-bold transition-all ${
-            activeTab === 'labs' ? 'bg-white text-emerald-600 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'
+            activeTab === 'labs' ? 'bg-white text-pink-600 shadow-sm' : 'text-neutral-500 hover:text-neutral-700'
           }`}
         >
           Lab Results
@@ -75,7 +75,7 @@ export const Records: React.FC = () => {
 
       {loading ? (
         <div className="flex justify-center py-20">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-emerald-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-600"></div>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6">
@@ -104,7 +104,7 @@ export const Records: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                    <button className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-xl transition-colors">
+                    <button className="text-pink-600 hover:bg-pink-50 p-2 rounded-xl transition-colors">
                       <Download size={20} />
                     </button>
                   </div>

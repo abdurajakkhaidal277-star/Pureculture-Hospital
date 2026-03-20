@@ -17,7 +17,7 @@ export const Home: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-bold mb-6 tracking-wide uppercase">
+              <span className="inline-block px-4 py-1 rounded-full bg-pink-50 text-pink-700 text-sm font-bold mb-6 tracking-wide uppercase">
                 {t('welcome')}
               </span>
               <h1 className="text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] mb-6 tracking-tight">
@@ -29,14 +29,14 @@ export const Home: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/login"
-                  className="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 flex items-center justify-center group"
+                  className="bg-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-pink-700 transition-all shadow-lg shadow-pink-200 flex items-center justify-center group"
                 >
                   {t('bookAppointment')}
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Link>
                 <Link
                   to="/doctors"
-                  className="bg-white text-neutral-900 border-2 border-neutral-200 px-8 py-4 rounded-2xl font-bold text-lg hover:border-emerald-600 hover:text-emerald-600 transition-all flex items-center justify-center"
+                  className="bg-white text-neutral-900 border-2 border-neutral-200 px-8 py-4 rounded-2xl font-bold text-lg hover:border-pink-600 hover:text-pink-600 transition-all flex items-center justify-center"
                 >
                   {t('findDoctor')}
                 </Link>
@@ -59,7 +59,7 @@ export const Home: React.FC = () => {
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-neutral-100 hidden md:block">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
+                  <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600">
                     <Star fill="currentColor" size={24} />
                   </div>
                   <div>
@@ -78,19 +78,19 @@ export const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-4xl font-bold text-emerald-600 mb-1">50+</p>
+              <p className="text-4xl font-bold text-pink-600 mb-1">50+</p>
               <p className="text-neutral-500 font-medium">Expert Doctors</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600 mb-1">20k+</p>
+              <p className="text-4xl font-bold text-pink-600 mb-1">20k+</p>
               <p className="text-neutral-500 font-medium">Happy Patients</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600 mb-1">15+</p>
+              <p className="text-4xl font-bold text-pink-600 mb-1">15+</p>
               <p className="text-neutral-500 font-medium">Specializations</p>
             </div>
             <div>
-              <p className="text-4xl font-bold text-emerald-600 mb-1">24/7</p>
+              <p className="text-4xl font-bold text-pink-600 mb-1">24/7</p>
               <p className="text-neutral-500 font-medium">Emergency Care</p>
             </div>
           </div>
@@ -181,7 +181,7 @@ export const Home: React.FC = () => {
                 whileHover={{ y: -5 }}
                 className="p-8 rounded-3xl bg-white border border-neutral-100 shadow-sm hover:shadow-xl transition-all"
               >
-                <div className="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
+                <div className="w-14 h-14 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-600 mb-6">
                   <service.icon size={28} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-900 mb-3">{service.title}</h3>
@@ -216,7 +216,7 @@ export const Home: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 <div className="absolute bottom-8 left-8 right-8">
-                  <span className="inline-block px-4 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider mb-4">
+                  <span className="inline-block px-4 py-1 rounded-full bg-pink-500 text-white text-xs font-bold uppercase tracking-wider mb-4">
                     Event Highlights
                   </span>
                   <h3 className="text-2xl font-bold text-white leading-tight">
@@ -234,13 +234,13 @@ export const Home: React.FC = () => {
                   {t('womensMonthDesc')}
                 </p>
                 <div className="bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm italic text-neutral-600 relative">
-                  <span className="absolute -top-4 left-8 text-6xl text-emerald-100 font-serif">"</span>
+                  <span className="absolute -top-4 left-8 text-6xl text-pink-100 font-serif">"</span>
                   <p className="relative z-10 leading-relaxed">
                     {t('womensMonthQuote')}
                   </p>
                   <p className="mt-4 font-bold text-neutral-900 not-italic">— Dr. Jennifer D. Araneta</p>
                 </div>
-                <p className="text-emerald-600 font-bold">
+                <p className="text-pink-600 font-bold">
                   {t('womensMonthClosing')}
                 </p>
               </motion.div>
@@ -290,24 +290,24 @@ export const Home: React.FC = () => {
                     <p className="text-neutral-900 font-bold">{t('ivtTime')}</p>
                   </div>
                 </div>
-                <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
-                  <p className="text-emerald-700 font-bold text-lg mb-2">{t('ivtFee')}</p>
-                  <p className="text-emerald-600 text-sm font-medium">{t('ivtReserve')}: <a href="tel:09171631740" className="underline">0917-163-1740</a></p>
+                <div className="bg-pink-50 p-6 rounded-2xl border border-pink-100">
+                  <p className="text-pink-700 font-bold text-lg mb-2">{t('ivtFee')}</p>
+                  <p className="text-pink-600 text-sm font-medium">{t('ivtReserve')}: <a href="tel:09171631740" className="underline">0917-163-1740</a></p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="font-bold text-neutral-900 mb-3 flex items-center">
-                      <CheckCircle2 className="text-emerald-500 mr-2" size={18} />
+                      <CheckCircle2 className="text-pink-500 mr-2" size={18} />
                       {t('ivtRequirements')}
                     </h4>
                     <ul className="text-sm text-neutral-600 space-y-1 ml-6 list-disc">
-                      <li>2x2 picture (green background)</li>
+                      <li>2x2 picture (pink background)</li>
                       <li>Photocopy of PRC ID</li>
                     </ul>
                   </div>
                   <div>
                     <h4 className="font-bold text-neutral-900 mb-3 flex items-center">
-                      <CheckCircle2 className="text-emerald-500 mr-2" size={18} />
+                      <CheckCircle2 className="text-pink-500 mr-2" size={18} />
                       {t('ivtInclusions')}
                     </h4>
                     <ul className="text-sm text-neutral-600 space-y-1 ml-6 list-disc">
@@ -376,19 +376,19 @@ export const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-emerald-600 relative overflow-hidden">
+      <section className="py-24 bg-pink-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Ready to prioritize your health?</h2>
-          <p className="text-xl text-emerald-50 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-pink-50 mb-12 max-w-2xl mx-auto">
             Join thousands of patients who trust Zamboanga Puericulture Center for their medical needs.
           </p>
           <Link
             to="/login"
-            className="inline-block bg-white text-emerald-600 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-emerald-50 transition-all shadow-xl"
+            className="inline-block bg-white text-pink-600 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-pink-50 transition-all shadow-xl"
           >
             Create an Account
           </Link>

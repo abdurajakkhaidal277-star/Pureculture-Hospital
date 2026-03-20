@@ -51,7 +51,7 @@ export const Dashboard: React.FC = () => {
         {profile.role === 'patient' && (
           <Link
             to="/book"
-            className="bg-emerald-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 flex items-center justify-center"
+            className="bg-pink-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-pink-700 transition-all shadow-lg shadow-pink-100 flex items-center justify-center"
           >
             <Plus className="mr-2" size={20} />
             {t('bookNewAppointment')}
@@ -78,7 +78,7 @@ export const Dashboard: React.FC = () => {
                   <p className="text-2xl font-bold text-neutral-900">{appointments.length}</p>
                 </div>
                 <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm">
-                  <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center mb-4">
                     <Clock size={20} />
                   </div>
                   <p className="text-sm text-neutral-500 font-medium">{t('pending')}</p>
@@ -99,7 +99,7 @@ export const Dashboard: React.FC = () => {
               <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-neutral-50 flex items-center justify-between">
                   <h2 className="text-xl font-bold text-neutral-900">{t('recentAppointments')}</h2>
-                  <Link to="/appointments" className="text-emerald-600 text-sm font-bold hover:underline">{t('viewAll')}</Link>
+                  <Link to="/appointments" className="text-pink-600 text-sm font-bold hover:underline">{t('viewAll')}</Link>
                 </div>
                 <div className="divide-y divide-neutral-50">
                   {loading ? (
@@ -122,7 +122,7 @@ export const Dashboard: React.FC = () => {
                         </div>
                         <div className="flex items-center space-x-4">
                           <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
-                            app.status === 'confirmed' ? 'bg-emerald-50 text-emerald-700' :
+                            app.status === 'confirmed' ? 'bg-pink-50 text-pink-700' :
                             app.status === 'pending' ? 'bg-amber-50 text-amber-700' :
                             app.status === 'cancelled' ? 'bg-red-50 text-red-700' :
                             'bg-neutral-100 text-neutral-700'
@@ -136,7 +136,7 @@ export const Dashboard: React.FC = () => {
                     <div className="p-10 text-center">
                       <p className="text-neutral-400 mb-4">{t('noAppointmentsFound')}</p>
                       {profile.role === 'patient' && (
-                        <Link to="/book" className="text-emerald-600 font-bold">{t('bookFirstAppointment')}</Link>
+                        <Link to="/book" className="text-pink-600 font-bold">{t('bookFirstAppointment')}</Link>
                       )}
                     </div>
                   )}
@@ -170,13 +170,13 @@ export const Dashboard: React.FC = () => {
             <h2 className="text-xl font-bold text-neutral-900 mb-6">{t('notifications')}</h2>
             <div className="space-y-4">
               <div className="flex space-x-3">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 shrink-0"></div>
+                <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 shrink-0"></div>
                 <p className="text-sm text-neutral-600">
                   {t('labResultsReady')}
                 </p>
               </div>
               <div className="flex space-x-3">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 shrink-0"></div>
+                <div className="w-2 h-2 bg-pink-500 rounded-full mt-2 shrink-0"></div>
                 <p className="text-sm text-neutral-600">
                   {t('appointmentConfirmed')}
                 </p>
