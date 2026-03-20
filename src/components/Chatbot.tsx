@@ -62,6 +62,10 @@ export const Chatbot: React.FC = () => {
         Packages:
         - Buntis Package (Normal Delivery): PHP 15,000. Includes 2 days ward, newborn hearing test, OB & Pedia fees.
         
+        Payments:
+        - We support GCash, Maya, Bank Transfer, and Crypto (BTC/ETH).
+        - Payments are processed securely via PayMongo.
+        
         Clinics:
         - Hospital Annex (Private Clinics)
         - Medical Arts Building (Physicians' Clinics)
