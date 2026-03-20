@@ -18,7 +18,7 @@ export const Contact: React.FC = () => {
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">{t('contactUs')}</h1>
             <p className="text-xl text-emerald-100 leading-relaxed">
-              We are here to help you. Reach out to us through any of the following channels.
+              {t('contactDesc')}
             </p>
           </motion.div>
         </div>
@@ -41,7 +41,7 @@ export const Contact: React.FC = () => {
                 <Phone size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('phone')}</h3>
-              <p className="text-neutral-600 mb-6">Call us for appointments or inquiries.</p>
+              <p className="text-neutral-600 mb-6">{t('phoneDesc')}</p>
               <div className="space-y-2">
                 <a href="tel:0629910379" className="block text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">(062) 991 0379</a>
                 <a href="tel:09171631740" className="block text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">0917 163 1740</a>
@@ -57,7 +57,7 @@ export const Contact: React.FC = () => {
                 <Mail size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('email')}</h3>
-              <p className="text-neutral-600 mb-6">Send us an email for non-urgent matters.</p>
+              <p className="text-neutral-600 mb-6">{t('emailDesc')}</p>
               <a href="mailto:zpc144@gmail.com" className="text-xl font-bold text-emerald-600 hover:text-emerald-700 transition-colors">zpc144@gmail.com</a>
             </motion.div>
 
@@ -70,7 +70,7 @@ export const Contact: React.FC = () => {
                 <MapPin size={32} />
               </div>
               <h3 className="text-2xl font-bold text-neutral-900 mb-4">{t('location')}</h3>
-              <p className="text-neutral-600 mb-6">Visit our hospital in Zamboanga City.</p>
+              <p className="text-neutral-600 mb-6">{t('locationDesc')}</p>
               <p className="text-xl font-bold text-neutral-900">Zamboanga Puericulture Center, Zamboanga City, Philippines</p>
             </motion.div>
           </div>
@@ -85,20 +85,20 @@ export const Contact: React.FC = () => {
               <h2 className="text-4xl font-bold mb-8 tracking-tight">{t('openingHours')}</h2>
               <div className="space-y-6">
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <span className="text-neutral-400">Emergency Care</span>
-                  <span className="font-bold text-emerald-400">24/7 Available</span>
+                  <span className="text-neutral-400">{t('emergencyCare')}</span>
+                  <span className="font-bold text-emerald-400">{t('available247')}</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <span className="text-neutral-400">Outpatient Clinics</span>
-                  <span className="font-bold">Mon - Sat: 8:00 AM - 5:00 PM</span>
+                  <span className="text-neutral-400">{t('outpatientClinics')}</span>
+                  <span className="font-bold">{t('monSat85')}</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <span className="text-neutral-400">Laboratory & Diagnostics</span>
-                  <span className="font-bold">Mon - Sun: 7:00 AM - 8:00 PM</span>
+                  <span className="text-neutral-400">{t('labDiagnostics')}</span>
+                  <span className="font-bold">{t('monSun78')}</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/10 pb-4">
-                  <span className="text-neutral-400">Visiting Hours</span>
-                  <span className="font-bold">Daily: 10:00 AM - 8:00 PM</span>
+                  <span className="text-neutral-400">{t('visitingHours')}</span>
+                  <span className="font-bold">{t('daily108')}</span>
                 </div>
               </div>
 

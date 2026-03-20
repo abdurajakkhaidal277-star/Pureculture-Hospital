@@ -12,6 +12,7 @@ import { Records } from './pages/Records';
 import { Billing } from './pages/Billing';
 import { Packages } from './pages/Packages';
 import { Contact } from './pages/Contact';
+import { Careers } from './pages/Careers';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading, isAuthReady } = useAuth();
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="/doctors" element={<Doctors />} />
               <Route path="/packages" element={<Packages />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/careers" element={<Careers />} />
               <Route
                 path="/dashboard"
                 element={

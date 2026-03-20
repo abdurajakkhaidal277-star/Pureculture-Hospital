@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthProvider';
 import { useLanguage } from '../LanguageContext';
+import { Chatbot } from './Chatbot';
 import { auth } from '../firebase';
 import { LogOut, User, LayoutDashboard, Calendar, FileText, Settings, Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,6 +22,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     { name: t('home'), path: '/' },
     { name: t('doctors'), path: '/doctors' },
     { name: t('packages'), path: '/packages' },
+    { name: t('careers'), path: '/careers' },
     { name: t('contact'), path: '/contact' },
   ];
 
@@ -169,6 +171,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         {children}
       </main>
 
+      {/* Chatbot */}
+      <Chatbot />
+
       {/* Footer */}
       <footer className="bg-neutral-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -189,6 +194,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <ul className="space-y-2 text-neutral-400">
                 <li><Link to="/doctors">{t('doctors')}</Link></li>
                 <li><Link to="/packages">{t('packages')}</Link></li>
+                <li><Link to="/careers">{t('careers')}</Link></li>
                 <li><Link to="/contact">{t('contact')}</Link></li>
               </ul>
             </div>

@@ -106,6 +106,22 @@ export const translations: Translations = {
   womensMonthMessageClosing: { en: 'This month, let’s stand together to support, uplift, and empower one another. To every incredible woman out there, your resilience and passion inspire us daily! ✨', tl: 'Ngayong buwan, magsama-sama tayo upang suportahan, iangat, at bigyang-kapangyarihan ang isa\'t isa. Sa bawat kahanga-hangang babae diyan, ang inyong katatagan at hilig ay nagbibigay-inspirasyon sa amin araw-araw! ✨' },
   happyWomensMonth: { en: 'Happy Women’s Month! 💪', tl: 'Maligayang Buwan ng Kababaihan! 💪' },
 
+  // Careers
+  careers: { en: 'Careers', tl: 'Mga Trabaho' },
+  joinOurTeam: { en: 'Join Our Growing Team!', tl: 'Sumali sa Aming Lumalaking Koponan!' },
+  jobOpenings: { en: 'Job Openings', tl: 'Mga Bakanteng Trabaho' },
+  applyNow: { en: 'Apply Now', tl: 'Mag-apply Na' },
+  requirements: { en: 'Requirements', tl: 'Mga Kinakailangan' },
+  sendCvTo: { en: 'Send your CV and Cover Letter to', tl: 'Ipadala ang iyong CV at Cover Letter sa' },
+  careerInquiry: { en: 'For career inquiries, contact us at', tl: 'Para sa mga katanungan sa trabaho, makipag-ugnayan sa amin sa' },
+  freshGradsWelcome: { en: 'Fresh graduates are welcome to apply!', tl: 'Ang mga bagong nagtapos ay malugod na inaanyayahang mag-apply!' },
+
+  // Chatbot
+  chatWithUs: { en: 'Chat with us', tl: 'Makipag-chat sa amin' },
+  howCanIHelp: { en: 'How can I help you today?', tl: 'Paano kita matutulungan ngayon?' },
+  typeMessage: { en: 'Type a message...', tl: 'Mag-type ng mensahe...' },
+  botWelcome: { en: 'Hello! I am the ZPMCH Assistant. How can I help you today?', tl: 'Kumusta! Ako ang ZPMCH Assistant. Paano kita matutulungan ngayon?' },
+
   // IVT Training
   ivtTitle: { en: '3-DAY BASIC IVT TRAINING', tl: '3-ARAW NA BASIC IVT TRAINING' },
   ivtDate: { en: 'April 30 – May 1-2, 2026', tl: 'Abril 30 – Mayo 1-2, 2026' },
@@ -119,10 +135,22 @@ export const translations: Translations = {
 
   // Contact
   contactUs: { en: 'Contact Us', tl: 'Makipag-ugnayan sa Amin' },
+  contactDesc: { en: 'We are here to help you. Reach out to us through any of the following channels.', tl: 'Nandito kami para tulungan ka. Makipag-ugnayan sa amin sa pamamagitan ng alinman sa mga sumusunod na channel.' },
   phone: { en: 'Phone', tl: 'Telepono' },
+  phoneDesc: { en: 'Call us for appointments or inquiries.', tl: 'Tawagan kami para sa mga appointment o katanungan.' },
   email: { en: 'Email', tl: 'Email' },
+  emailDesc: { en: 'Send us an email for non-urgent matters.', tl: 'Mag-email sa amin para sa mga hindi apurahang bagay.' },
   location: { en: 'Location', tl: 'Lokasyon' },
+  locationDesc: { en: 'Visit our hospital in Zamboanga City.', tl: 'Bisitahin ang aming ospital sa Zamboanga City.' },
   openingHours: { en: 'Opening Hours', tl: 'Mga Oras ng Pagbubukas' },
+  emergencyCare: { en: 'Emergency Care', tl: 'Pangangalaga sa Emergency' },
+  outpatientClinics: { en: 'Outpatient Clinics', tl: 'Mga Outpatient Clinic' },
+  labDiagnostics: { en: 'Laboratory & Diagnostics', tl: 'Laboratoryo at Diagnostics' },
+  visitingHours: { en: 'Visiting Hours', tl: 'Mga Oras ng Pagbisita' },
+  available247: { en: '24/7 Available', tl: '24/7 Available' },
+  monSat85: { en: 'Mon - Sat: 8:00 AM - 5:00 PM', tl: 'Lunes - Sabado: 8:00 AM - 5:00 PM' },
+  monSun78: { en: 'Mon - Sun: 7:00 AM - 8:00 PM', tl: 'Lunes - Linggo: 7:00 AM - 8:00 PM' },
+  daily108: { en: 'Daily: 10:00 AM - 8:00 PM', tl: 'Araw-araw: 10:00 AM - 8:00 PM' },
   footerDesc: { en: 'Zamboanga Puericulture Center Org. No. 144. Providing world-class healthcare with compassion and excellence. Your health is our priority.', tl: 'Zamboanga Puericulture Center Org. No. 144. Nagbibigay ng world-class na pangangalagang pangkalusugan na may malasakit at kahusayan. Ang iyong kalusugan ang aming priyoridad.' },
   orgName: { en: 'Zamboanga Puericulture Center Org. No. 144', tl: 'Zamboanga Puericulture Center Org. No. 144' },
 
