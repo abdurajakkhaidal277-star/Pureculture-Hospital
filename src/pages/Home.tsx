@@ -192,6 +192,189 @@ export const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* News & Events Section */}
+      <section className="py-24 bg-neutral-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl font-bold text-neutral-900 mb-6 tracking-tight">{t('latestNews')}</h2>
+          </div>
+          
+          <div className="space-y-24">
+            {/* Women's Month Event */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative rounded-[2.5rem] overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
+                  alt="Women's Month Celebration"
+                  className="w-full h-[400px] object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8">
+                  <span className="inline-block px-4 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider mb-4">
+                    Event Highlights
+                  </span>
+                  <h3 className="text-2xl font-bold text-white leading-tight">
+                    {t('womensMonthTitle')}
+                  </h3>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <p className="text-lg text-neutral-700 leading-relaxed">
+                  {t('womensMonthDesc')}
+                </p>
+                <div className="bg-white p-8 rounded-3xl border border-neutral-100 shadow-sm italic text-neutral-600 relative">
+                  <span className="absolute -top-4 left-8 text-6xl text-emerald-100 font-serif">"</span>
+                  <p className="relative z-10 leading-relaxed">
+                    {t('womensMonthQuote')}
+                  </p>
+                  <p className="mt-4 font-bold text-neutral-900 not-italic">— Dr. Jennifer D. Araneta</p>
+                </div>
+                <p className="text-emerald-600 font-bold">
+                  {t('womensMonthClosing')}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* IVT Training Event */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:flex-row-reverse">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="lg:order-2 relative rounded-[2.5rem] overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1000"
+                  alt="IVT Training"
+                  className="w-full h-[400px] object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8 text-white">
+                  <span className="inline-block px-4 py-1 rounded-full bg-pink-500 text-white text-xs font-bold uppercase tracking-wider mb-4">
+                    {t('ivtLimitedSlots')}
+                  </span>
+                  <h3 className="text-2xl font-bold leading-tight">
+                    {t('ivtTitle')}
+                  </h3>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="lg:order-1 space-y-6"
+              >
+                <h3 className="text-3xl font-bold text-neutral-900">{t('ivtTitle')}</h3>
+                <p className="text-lg text-neutral-700 leading-relaxed">
+                  {t('ivtDesc')}
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white p-6 rounded-2xl border border-neutral-100 shadow-sm">
+                    <p className="text-sm font-bold text-neutral-400 uppercase tracking-widest mb-2">Date</p>
+                    <p className="text-neutral-900 font-bold">{t('ivtDate')}</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl border border-neutral-100 shadow-sm">
+                    <p className="text-sm font-bold text-neutral-400 uppercase tracking-widest mb-2">Time</p>
+                    <p className="text-neutral-900 font-bold">{t('ivtTime')}</p>
+                  </div>
+                </div>
+                <div className="bg-emerald-50 p-6 rounded-2xl border border-emerald-100">
+                  <p className="text-emerald-700 font-bold text-lg mb-2">{t('ivtFee')}</p>
+                  <p className="text-emerald-600 text-sm font-medium">{t('ivtReserve')}: <a href="tel:09171631740" className="underline">0917-163-1740</a></p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-bold text-neutral-900 mb-3 flex items-center">
+                      <CheckCircle2 className="text-emerald-500 mr-2" size={18} />
+                      {t('ivtRequirements')}
+                    </h4>
+                    <ul className="text-sm text-neutral-600 space-y-1 ml-6 list-disc">
+                      <li>2x2 picture (green background)</li>
+                      <li>Photocopy of PRC ID</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-neutral-900 mb-3 flex items-center">
+                      <CheckCircle2 className="text-emerald-500 mr-2" size={18} />
+                      {t('ivtInclusions')}
+                    </h4>
+                    <ul className="text-sm text-neutral-600 space-y-1 ml-6 list-disc">
+                      <li>IVT Handbook</li>
+                      <li>License card & Certificate</li>
+                      <li>Snacks & meals (3 days)</li>
+                      <li>Basic IVT Kit</li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Women's Month Chief Nurse Message */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="relative rounded-[2.5rem] overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000"
+                  alt="Chief Nurse Message"
+                  className="w-full h-[400px] object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-8 left-8 right-8">
+                  <span className="inline-block px-4 py-1 rounded-full bg-purple-500 text-white text-xs font-bold uppercase tracking-wider mb-4">
+                    Leadership Spotlight
+                  </span>
+                  <h3 className="text-2xl font-bold text-white leading-tight">
+                    {t('womensMonthMessageTitle')}
+                  </h3>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-6"
+              >
+                <div className="flex items-center space-x-4 mb-2">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold">
+                    AA
+                  </div>
+                  <div>
+                    <p className="font-bold text-neutral-900">Aprilyn Antonio, RN</p>
+                    <p className="text-sm text-neutral-500">OIC Chief Nurse</p>
+                  </div>
+                </div>
+                <p className="text-lg text-neutral-700 leading-relaxed">
+                  {t('womensMonthMessageBody')}
+                </p>
+                <p className="text-lg text-neutral-700 leading-relaxed">
+                  {t('womensMonthMessageClosing')}
+                </p>
+                <p className="text-2xl font-bold text-purple-600">
+                  {t('happyWomensMonth')}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 bg-emerald-600 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">

@@ -19,7 +19,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
   const navItems = [
     { name: t('home'), path: '/' },
-    { name: t('about'), path: '/about' },
     { name: t('doctors'), path: '/doctors' },
     { name: t('packages'), path: '/packages' },
     { name: t('contact'), path: '/contact' },
@@ -179,29 +178,27 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">+</span>
                 </div>
-                <span className="text-xl font-bold tracking-tight">Zamboanga Puericulture Center</span>
+                <span className="text-xl font-bold tracking-tight">{t('orgName')}</span>
               </div>
               <p className="text-neutral-400 max-w-md">
-                Zamboanga Puericulture Center Org. No. 144. Providing world-class healthcare with compassion and excellence. Your health is our priority.
+                {t('footerDesc')}
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
+              <h4 className="font-bold mb-4">{t('quickLinks')}</h4>
               <ul className="space-y-2 text-neutral-400">
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/doctors">Our Doctors</Link></li>
-                <li><Link to="/packages">Maternity Packages</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
-                <li><Link to="/privacy">Privacy Policy</Link></li>
+                <li><Link to="/doctors">{t('doctors')}</Link></li>
+                <li><Link to="/packages">{t('packages')}</Link></li>
+                <li><Link to="/contact">{t('contact')}</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Contact Us</h4>
+              <h4 className="font-bold mb-4">{t('contactUs')}</h4>
               <ul className="space-y-2 text-neutral-400">
                 <li>Pura Brillantes corner La Purisima Street, Zamboanga City, Philippines, 7000</li>
                 <li>(062) 991 0379</li>
-                <li>+63 917 142 6064</li>
-                <li>zpc144@yahoo.com</li>
+                <li>+63 917 163 1740</li>
+                <li>zpc144@gmail.com</li>
               </ul>
             </div>
           </div>

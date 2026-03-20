@@ -11,6 +11,7 @@ import { BookAppointment } from './pages/BookAppointment';
 import { Records } from './pages/Records';
 import { Billing } from './pages/Billing';
 import { Packages } from './pages/Packages';
+import { Contact } from './pages/Contact';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading, isAuthReady } = useAuth();
@@ -44,6 +45,7 @@ export default function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/doctors" element={<Doctors />} />
               <Route path="/packages" element={<Packages />} />
+              <Route path="/contact" element={<Contact />} />
               <Route
                 path="/dashboard"
                 element={

@@ -16,6 +16,7 @@ export const translations: Translations = {
   doctors: { en: 'Doctors', tl: 'Mga Doktor' },
   packages: { en: 'Packages', tl: 'Mga Package' },
   contact: { en: 'Contact', tl: 'Kontak' },
+  quickLinks: { en: 'Quick Links', tl: 'Mabilisang Links' },
   dashboard: { en: 'Dashboard', tl: 'Dashboard' },
   login: { en: 'Login', tl: 'Mag-login' },
   logout: { en: 'Logout', tl: 'Mag-logout' },
@@ -92,6 +93,39 @@ export const translations: Translations = {
   labResultsReady: { en: 'Your lab results are ready to view.', tl: 'Ang iyong mga resulta sa lab ay handa na para tingnan.' },
   appointmentConfirmed: { en: 'Appointment confirmed.', tl: 'Kumpirmado na ang appointment.' },
   
+  // News & Events
+  latestNews: { en: 'Latest News & Events', tl: 'Mga Pinakabagong Balita at Kaganapan' },
+  womensMonthTitle: { en: "✨ WOMEN'S MONTH CELEBRATION AT ZPMCH ✨", tl: '✨ PAGDIRIWANG NG BUWAN NG KABABAIHAN SA ZPMCH ✨' },
+  womensMonthDesc: { en: 'Zamboanga Puericulture Maternity and Children’s Hospital (ZPMCH) welcomed Dr. Jennifer D. Araneta, who was invited to conduct a lecture on Patient Safety on March 19, 2026, in celebration of Women’s Month!', tl: 'Malugod na tinanggap ng Zamboanga Puericulture Maternity and Children’s Hospital (ZPMCH) si Dr. Jennifer D. Araneta, na naimbitahang magsagawa ng lecture tungkol sa Patient Safety noong Marso 19, 2026, bilang pagdiriwang ng Buwan ng Kababaihan!' },
+  womensMonthQuote: { en: '"As an OB-GYNE, it is both an honor and a responsibility to care for women... Patient safety is not just a protocol; it is a commitment to protect lives, uphold dignity, and ensure that every mother, daughter, and sister receives the care she truly deserves."', tl: '"Bilang isang OB-GYNE, isang karangalan at responsibilidad ang mag-alaga sa mga kababaihan... Ang kaligtasan ng pasyente ay hindi lamang isang protocol; ito ay isang pangako na protektahan ang mga buhay, itaguyod ang dignidad, at tiyakin na ang bawat ina, anak na babae, at kapatid na babae ay makakatanggap ng pangangalagang nararapat sa kanila."' },
+  womensMonthClosing: { en: 'Let us continue empowering women through education, compassion, and excellence in healthcare!', tl: 'Patuloy nating bigyang-kapangyarihan ang mga kababaihan sa pamamagitan ng edukasyon, malasakit, at kahusayan sa pangangalagang pangkalusugan!' },
+
+  // Women's Month Message
+  womensMonthMessageTitle: { en: 'Zamboanga Puericulture Maternity and Children’s Hospital celebrates Women’s Month 2026! 💜', tl: 'Ipinagdiriwang ng Zamboanga Puericulture Maternity and Children’s Hospital ang Buwan ng Kababaihan 2026! 💜' },
+  womensMonthMessageBody: { en: 'Our OIC Chief Nurse, Aprilyn Antonio, RN, shares a powerful message recognizing the strength, compassion, and dedication of all women making a difference in our communities and workplaces.', tl: 'Ang aming OIC Chief Nurse, Aprilyn Antonio, RN, ay nagbabahagi ng isang makapangyarihang mensahe na kumikilala sa lakas, malasakit, at dedikasyon ng lahat ng kababaihan na gumagawa ng pagkakaiba sa ating mga komunidad at lugar ng trabaho.' },
+  womensMonthMessageClosing: { en: 'This month, let’s stand together to support, uplift, and empower one another. To every incredible woman out there, your resilience and passion inspire us daily! ✨', tl: 'Ngayong buwan, magsama-sama tayo upang suportahan, iangat, at bigyang-kapangyarihan ang isa\'t isa. Sa bawat kahanga-hangang babae diyan, ang inyong katatagan at hilig ay nagbibigay-inspirasyon sa amin araw-araw! ✨' },
+  happyWomensMonth: { en: 'Happy Women’s Month! 💪', tl: 'Maligayang Buwan ng Kababaihan! 💪' },
+
+  // IVT Training
+  ivtTitle: { en: '3-DAY BASIC IVT TRAINING', tl: '3-ARAW NA BASIC IVT TRAINING' },
+  ivtDate: { en: 'April 30 – May 1-2, 2026', tl: 'Abril 30 – Mayo 1-2, 2026' },
+  ivtTime: { en: '8:00 AM - 5:00 PM', tl: '8:00 AM - 5:00 PM' },
+  ivtFee: { en: 'Fee: Php 3,500.00', tl: 'Bayad: Php 3,500.00' },
+  ivtRequirements: { en: 'Requirements', tl: 'Mga Kinakailangan' },
+  ivtInclusions: { en: 'Inclusions', tl: 'Mga Kasama' },
+  ivtReserve: { en: 'Reserve your spot now', tl: 'Mag-reserve na ng iyong slot' },
+  ivtLimitedSlots: { en: 'LIMITED SLOTS AVAILABLE!', tl: 'LIMITADONG SLOTS LAMANG!' },
+  ivtDesc: { en: 'Master the essential skills in Intravenous Therapy with our 3-DAY BASIC IVT TRAINING!', tl: 'Maging bihasa sa mga mahahalagang kasanayan sa Intravenous Therapy sa aming 3-ARAW NA BASIC IVT TRAINING!' },
+
+  // Contact
+  contactUs: { en: 'Contact Us', tl: 'Makipag-ugnayan sa Amin' },
+  phone: { en: 'Phone', tl: 'Telepono' },
+  email: { en: 'Email', tl: 'Email' },
+  location: { en: 'Location', tl: 'Lokasyon' },
+  openingHours: { en: 'Opening Hours', tl: 'Mga Oras ng Pagbubukas' },
+  footerDesc: { en: 'Zamboanga Puericulture Center Org. No. 144. Providing world-class healthcare with compassion and excellence. Your health is our priority.', tl: 'Zamboanga Puericulture Center Org. No. 144. Nagbibigay ng world-class na pangangalagang pangkalusugan na may malasakit at kahusayan. Ang iyong kalusugan ang aming priyoridad.' },
+  orgName: { en: 'Zamboanga Puericulture Center Org. No. 144', tl: 'Zamboanga Puericulture Center Org. No. 144' },
+
   // Common
   search: { en: 'Search', tl: 'Maghanap' },
   loading: { en: 'Loading...', tl: 'Naglo-load...' },

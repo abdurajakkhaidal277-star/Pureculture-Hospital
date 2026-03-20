@@ -127,7 +127,13 @@ const medicalArtsClinics: PrivateClinic[] = [
   {
     unit: '207',
     doctors: [
-      { name: 'Available for Lease', specialization: '', schedule: '' }
+      { name: 'Dr. Sherryl Anne Macrohon- Sew', specialization: 'Obstetrics- Gynecologist', schedule: 'MON- WED- FRI- SAT, 9:00AM to 4:00PM', contact: '0917-700-1175' }
+    ]
+  },
+  {
+    unit: '208-400',
+    doctors: [
+      { name: 'Various Specialists / Available for Lease', specialization: 'Contact Administration for Details', schedule: 'Varies', contact: '0917-700-1175' }
     ]
   }
 ];
