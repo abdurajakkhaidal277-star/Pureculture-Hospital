@@ -1,0 +1,169 @@
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: users
+// Document ID: userId (UID)
+// Fields:
+//   - name: string (required)
+//   - email: string (required, format: email)
+//   - role: string (required, enum: ['patient', 'doctor', 'admin'])
+//   - phone: string (optional)
+//   - createdAt: timestamp (required)
+//   - specialization: string (optional, for doctors)
+//   - schedule: string (optional, for doctors)
+//   - address: string (optional, for patients)
+//   - birthdate: string (optional, for patients)
+//   - gender: string (optional, for patients)
+//
+// Collection: appointments
+// Document ID: appointmentId
+// Fields:
+//   - patientId: string (required)
+//   - doctorId: string (required)
+//   - patientName: string (optional)
+//   - doctorName: string (optional)
+//   - date: timestamp (required)
+//   - status: string (required, enum: ['pending', 'confirmed', 'completed', 'cancelled'])
+//   - notes: string (optional)
+//
+// Collection: invoices
+// Document ID: invoiceId
+// Fields:
+//   - appointmentId: string (required)
+//   - patientId: string (required)
+//   - totalAmount: number (required)
+//   - status: string (required, enum: ['unpaid', 'paid'])
+//   - createdAt: timestamp (required)
+//
+// Collection: payments
+// Document ID: paymentId
+// Fields:
+//   - invoiceId: string (required)
+//   - method: string (required)
+//   - amount: number (required)
+//   - status: string (required)
+//   - createdAt: timestamp (required)
+//
+// Collection: prescriptions
+// Document ID: prescriptionId
+// Fields:
+//   - appointmentId: string (required)
+//   - patientId: string (required)
+//   - doctorId: string (required)
+//   - details: string (required)
+//   - createdAt: timestamp (required)
+//
+// Collection: lab_results
+// Document ID: resultId
+// Fields:
+//   - patientId: string (required)
+//   - result: string (required)
+//   - fileUrl: string (optional)
+//   - createdAt: timestamp (required)
+//
+// ===============================================================
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "abdurajakkhaidal277@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isDoctor() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'doctor';
+    }
+
+    function isPatient() {
+      return isAuthenticated() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'patient';
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidUser(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.role in ['patient', 'doctor', 'admin'];
+    }
+
+    function isValidAppointment(data) {
+      return data.patientId is string &&
+             data.doctorId is string &&
+             data.status in ['pending', 'confirmed', 'completed', 'cancelled'];
+    }
+
+    function isValidInvoice(data) {
+      return data.appointmentId is string &&
+             data.patientId is string &&
+             data.totalAmount is number &&
+             data.status in ['unpaid', 'paid'];
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isOwner(userId) && isValidUser(request.resource.data) && (request.resource.data.role != 'admin' || isAdmin());
+      allow update: if isAuthenticated() && (isOwner(userId) || isAdmin()) && isValidUser(request.resource.data) && (request.resource.data.role == resource.data.role || isAdmin());
+    }
+
+    match /appointments/{appointmentId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.patientId || request.auth.uid == resource.data.doctorId || isAdmin());
+      allow create: if isAuthenticated() && (request.auth.uid == request.resource.data.patientId || isAdmin()) && isValidAppointment(request.resource.data);
+      allow update: if isAuthenticated() && (request.auth.uid == resource.data.patientId || request.auth.uid == resource.data.doctorId || isAdmin()) && isValidAppointment(request.resource.data);
+    }
+
+    match /invoices/{invoiceId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.patientId || isAdmin());
+      allow create: if isAdmin();
+      allow update: if isAdmin() || (isAuthenticated() && request.auth.uid == resource.data.patientId && request.resource.data.status == 'paid' && resource.data.status == 'unpaid');
+    }
+
+    match /payments/{paymentId} {
+      allow read: if isAuthenticated() && (isAdmin() || exists(/databases/$(database)/documents/invoices/$(resource.data.invoiceId)) && get(/databases/$(database)/documents/invoices/$(resource.data.invoiceId)).data.patientId == request.auth.uid);
+      allow create: if isAuthenticated();
+    }
+
+    match /prescriptions/{prescriptionId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.patientId || request.auth.uid == resource.data.doctorId || isAdmin());
+      allow create: if isDoctor() || isAdmin();
+    }
+
+    match /lab_results/{resultId} {
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.patientId || isAdmin());
+      allow create: if isAdmin();
+    }
+    
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}

@@ -1,0 +1,175 @@
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthProvider';
+import { auth } from '../firebase';
+import { LogOut, User, LayoutDashboard, Calendar, FileText, Settings, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, profile } = useAuth();
+  const navigate = useNavigate();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+  const handleLogout = async () => {
+    await auth.signOut();
+    navigate('/');
+  };
+
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Doctors', path: '/doctors' },
+    { name: 'Contact', path: '/contact' },
+  ];
+
+  const dashboardItems = profile ? [
+    { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { name: 'Appointments', path: '/appointments', icon: Calendar },
+    { name: 'Records', path: '/records', icon: FileText },
+    { name: 'Profile', path: '/profile', icon: Settings },
+  ] : [];
+
+  return (
+    <div className="min-h-screen bg-neutral-50 flex flex-col font-sans">
+      {/* Navigation */}
+      <nav className="bg-white border-b border-neutral-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center space-x-2">
+                <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">+</span>
+                </div>
+                <span className="text-xl font-bold text-neutral-900 tracking-tight">Pureculture</span>
+              </Link>
+            </div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link key={item.name} to={item.path} className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">
+                  {item.name}
+                </Link>
+              ))}
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <Link to="/dashboard" className="bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-emerald-700 transition-all shadow-sm">
+                    Dashboard
+                  </Link>
+                  <button onClick={handleLogout} className="text-neutral-500 hover:text-red-600 transition-colors">
+                    <LogOut size={20} />
+                  </button>
+                </div>
+              ) : (
+                <Link to="/login" className="bg-emerald-600 text-white px-6 py-2 rounded-xl font-medium hover:bg-emerald-700 transition-all shadow-sm">
+                  Login
+                </Link>
+              )}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-neutral-600">
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-t border-neutral-100 overflow-hidden"
+            >
+              <div className="px-4 pt-2 pb-6 space-y-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 text-neutral-600 font-medium"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                {user ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-emerald-600 font-bold"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-3 py-2 text-red-600 font-medium"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 text-emerald-600 font-bold"
+                  >
+                    Login
+                  </Link>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </nav>
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-neutral-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">+</span>
+                </div>
+                <span className="text-xl font-bold tracking-tight">Pureculture Hospital</span>
+              </div>
+              <p className="text-neutral-400 max-w-md">
+                Providing world-class healthcare with compassion and excellence. Your health is our priority.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-neutral-400">
+                <li><Link to="/about">About Us</Link></li>
+                <li><Link to="/doctors">Our Doctors</Link></li>
+                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/privacy">Privacy Policy</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Contact Us</h4>
+              <ul className="space-y-2 text-neutral-400">
+                <li>123 Healthcare Ave, Manila</li>
+                <li>+63 2 8888 0000</li>
+                <li>info@pureculture.ph</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-neutral-500 text-sm">
+            © 2026 Pureculture Hospital. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
