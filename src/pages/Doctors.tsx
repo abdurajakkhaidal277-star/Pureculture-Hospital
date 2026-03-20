@@ -77,7 +77,7 @@ export const Doctors: React.FC = () => {
                 </div>
                 <div className="flex items-center text-neutral-500 text-sm mb-6">
                   <MapPin size={16} className="mr-1" />
-                  Pureculture Hospital, Manila
+                  Zamboanga Puericulture Center, Zamboanga City
                 </div>
                 <Link
                   to="/login"

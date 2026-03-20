@@ -40,7 +40,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">+</span>
                 </div>
-                <span className="text-xl font-bold text-neutral-900 tracking-tight">Pureculture</span>
+                <span className="text-xl font-bold text-neutral-900 tracking-tight">Zamboanga Puericulture Center</span>
               </Link>
             </div>
 
@@ -141,10 +141,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-xl">+</span>
                 </div>
-                <span className="text-xl font-bold tracking-tight">Pureculture Hospital</span>
+                <span className="text-xl font-bold tracking-tight">Zamboanga Puericulture Center</span>
               </div>
               <p className="text-neutral-400 max-w-md">
-                Providing world-class healthcare with compassion and excellence. Your health is our priority.
+                Zamboanga Puericulture Center Org. No. 144. Providing world-class healthcare with compassion and excellence. Your health is our priority.
               </p>
             </div>
             <div>
@@ -159,14 +159,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <div>
               <h4 className="font-bold mb-4">Contact Us</h4>
               <ul className="space-y-2 text-neutral-400">
-                <li>123 Healthcare Ave, Manila</li>
-                <li>+63 2 8888 0000</li>
-                <li>info@pureculture.ph</li>
+                <li>Pura Brillantes corner La Purisima Street, Zamboanga City, Philippines, 7000</li>
+                <li>(062) 991 0379</li>
+                <li>+63 917 142 6064</li>
+                <li>zpc144@yahoo.com</li>
               </ul>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-neutral-500 text-sm">
-            © 2026 Pureculture Hospital. All rights reserved.
+            © 2026 Zamboanga Puericulture Center Org. No. 144. All rights reserved.
           </div>
         </div>
       </footer>

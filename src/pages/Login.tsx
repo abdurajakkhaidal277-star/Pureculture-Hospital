@@ -63,7 +63,7 @@ export const Login: React.FC = () => {
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
           <p className="text-neutral-500">
-            {isLogin ? 'Login to access your dashboard' : 'Join Pureculture Hospital today'}
+            {isLogin ? 'Login to access your dashboard' : 'Join Zamboanga Puericulture Center today'}
           </p>
         </div>
 

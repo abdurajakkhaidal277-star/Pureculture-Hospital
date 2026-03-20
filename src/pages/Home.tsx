@@ -16,7 +16,7 @@ export const Home: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-bold mb-6 tracking-wide uppercase">
-                Welcome to Pureculture
+                Welcome to Zamboanga Puericulture Center
               </span>
               <h1 className="text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] mb-6 tracking-tight">
                 Healthcare that <span className="text-emerald-600 italic">cares</span> for you.
@@ -138,7 +138,7 @@ export const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight">Ready to prioritize your health?</h2>
           <p className="text-xl text-emerald-50 mb-12 max-w-2xl mx-auto">
-            Join thousands of patients who trust Pureculture Hospital for their medical needs.
+            Join thousands of patients who trust Zamboanga Puericulture Center for their medical needs.
           </p>
           <Link
             to="/login"
