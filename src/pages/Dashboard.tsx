@@ -9,9 +9,11 @@ import { motion } from 'framer-motion';
 import { Calendar, Clock, CreditCard, FileText, User, Plus, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import { useLanguage } from '../LanguageContext';
 
 export const Dashboard: React.FC = () => {
   const { profile } = useAuth();
+  const { t } = useLanguage();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [doctors, setDoctors] = useState<UserProfile[]>([]);
@@ -42,9 +44,9 @@ export const Dashboard: React.FC = () => {
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
         <div>
           <h1 className="text-3xl font-bold text-neutral-900 tracking-tight">
-            Hello, {profile.name.split(' ')[0]}!
+            {t('hello')}, {profile.name.split(' ')[0]}!
           </h1>
-          <p className="text-neutral-500">Welcome back to your {profile.role} dashboard.</p>
+          <p className="text-neutral-500">{t('welcomeBackDash')}</p>
         </div>
         {profile.role === 'patient' && (
           <Link
@@ -52,7 +54,7 @@ export const Dashboard: React.FC = () => {
             className="bg-emerald-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 flex items-center justify-center"
           >
             <Plus className="mr-2" size={20} />
-            Book New Appointment
+            {t('bookNewAppointment')}
           </Link>
         )}
       </div>
@@ -72,14 +74,14 @@ export const Dashboard: React.FC = () => {
                   <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4">
                     <Calendar size={20} />
                   </div>
-                  <p className="text-sm text-neutral-500 font-medium">Total Appointments</p>
+                  <p className="text-sm text-neutral-500 font-medium">{t('totalAppointments')}</p>
                   <p className="text-2xl font-bold text-neutral-900">{appointments.length}</p>
                 </div>
                 <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm">
                   <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-4">
                     <Clock size={20} />
                   </div>
-                  <p className="text-sm text-neutral-500 font-medium">Pending</p>
+                  <p className="text-sm text-neutral-500 font-medium">{t('pending')}</p>
                   <p className="text-2xl font-bold text-neutral-900">
                     {appointments.filter(a => a.status === 'pending').length}
                   </p>
@@ -88,7 +90,7 @@ export const Dashboard: React.FC = () => {
                   <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mb-4">
                     <FileText size={20} />
                   </div>
-                  <p className="text-sm text-neutral-500 font-medium">Medical Records</p>
+                  <p className="text-sm text-neutral-500 font-medium">{t('medicalRecords')}</p>
                   <p className="text-2xl font-bold text-neutral-900">12</p>
                 </div>
               </div>
@@ -96,12 +98,12 @@ export const Dashboard: React.FC = () => {
               {/* Recent Appointments */}
               <div className="bg-white rounded-3xl border border-neutral-100 shadow-sm overflow-hidden">
                 <div className="p-6 border-b border-neutral-50 flex items-center justify-between">
-                  <h2 className="text-xl font-bold text-neutral-900">Recent Appointments</h2>
-                  <Link to="/appointments" className="text-emerald-600 text-sm font-bold hover:underline">View All</Link>
+                  <h2 className="text-xl font-bold text-neutral-900">{t('recentAppointments')}</h2>
+                  <Link to="/appointments" className="text-emerald-600 text-sm font-bold hover:underline">{t('viewAll')}</Link>
                 </div>
                 <div className="divide-y divide-neutral-50">
                   {loading ? (
-                    <div className="p-10 text-center text-neutral-400">Loading...</div>
+                    <div className="p-10 text-center text-neutral-400">{t('loading')}</div>
                   ) : appointments.length > 0 ? (
                     appointments.map((app) => (
                       <div key={app.id} className="p-6 flex items-center justify-between hover:bg-neutral-50 transition-colors">
@@ -132,9 +134,9 @@ export const Dashboard: React.FC = () => {
                     ))
                   ) : (
                     <div className="p-10 text-center">
-                      <p className="text-neutral-400 mb-4">No appointments found.</p>
+                      <p className="text-neutral-400 mb-4">{t('noAppointmentsFound')}</p>
                       {profile.role === 'patient' && (
-                        <Link to="/book" className="text-emerald-600 font-bold">Book your first appointment</Link>
+                        <Link to="/book" className="text-emerald-600 font-bold">{t('bookFirstAppointment')}</Link>
                       )}
                     </div>
                   )}
@@ -149,34 +151,34 @@ export const Dashboard: React.FC = () => {
           {/* Billing Summary */}
             <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-neutral-900">Billing</h2>
+              <h2 className="text-xl font-bold text-neutral-900">{t('billing')}</h2>
               <CreditCard className="text-neutral-400" size={20} />
             </div>
             <div className="space-y-4">
               <div className="p-4 bg-neutral-50 rounded-2xl">
-                <p className="text-sm text-neutral-500 mb-1">Unpaid Balance</p>
+                <p className="text-sm text-neutral-500 mb-1">{t('unpaidBalance')}</p>
                 <p className="text-2xl font-bold text-neutral-900">₱0.00</p>
               </div>
               <Link to="/billing" className="block w-full py-3 bg-neutral-900 text-white text-center rounded-xl font-bold hover:bg-neutral-800 transition-all">
-                View Invoices
+                {t('viewInvoices')}
               </Link>
             </div>
           </div>
 
           {/* Notifications/Alerts */}
           <div className="bg-white p-6 rounded-3xl border border-neutral-100 shadow-sm">
-            <h2 className="text-xl font-bold text-neutral-900 mb-6">Notifications</h2>
+            <h2 className="text-xl font-bold text-neutral-900 mb-6">{t('notifications')}</h2>
             <div className="space-y-4">
               <div className="flex space-x-3">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 shrink-0"></div>
                 <p className="text-sm text-neutral-600">
-                  Your lab results for <span className="font-bold">Blood Test</span> are ready to view.
+                  {t('labResultsReady')}
                 </p>
               </div>
               <div className="flex space-x-3">
                 <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 shrink-0"></div>
                 <p className="text-sm text-neutral-600">
-                  Appointment with <span className="font-bold">Dr. Santos</span> confirmed.
+                  {t('appointmentConfirmed')}
                 </p>
               </div>
             </div>

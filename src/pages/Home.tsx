@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, Shield, Clock, Users, ArrowRight, Star, CheckCircle2, FileText } from 'lucide-react';
+import { Calendar, Shield, Clock, Users, ArrowRight, Star, CheckCircle2, FileText, Baby } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../LanguageContext';
 
 export const Home: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -16,27 +18,27 @@ export const Home: React.FC = () => {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-bold mb-6 tracking-wide uppercase">
-                Welcome to Zamboanga Puericulture Center
+                {t('welcome')}
               </span>
               <h1 className="text-5xl lg:text-7xl font-bold text-neutral-900 leading-[1.1] mb-6 tracking-tight">
-                Healthcare that <span className="text-emerald-600 italic">cares</span> for you.
+                {t('heroTitle')}
               </h1>
               <p className="text-xl text-neutral-600 mb-8 max-w-lg leading-relaxed">
-                Experience world-class medical services with the most advanced technology and compassionate care in the Philippines.
+                {t('heroDesc')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   to="/login"
                   className="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-200 flex items-center justify-center group"
                 >
-                  Book Appointment
+                  {t('bookAppointment')}
                   <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
                 </Link>
                 <Link
                   to="/doctors"
                   className="bg-white text-neutral-900 border-2 border-neutral-200 px-8 py-4 rounded-2xl font-bold text-lg hover:border-emerald-600 hover:text-emerald-600 transition-all flex items-center justify-center"
                 >
-                  Find a Doctor
+                  {t('findDoctor')}
                 </Link>
               </div>
             </motion.div>
@@ -90,6 +92,67 @@ export const Home: React.FC = () => {
             <div>
               <p className="text-4xl font-bold text-emerald-600 mb-1">24/7</p>
               <p className="text-neutral-500 font-medium">Emergency Care</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Buntis Package Promo */}
+      <section className="py-24 bg-pink-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-[3rem] shadow-2xl shadow-pink-200/50 overflow-hidden border border-pink-100">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
+              <div className="p-12 md:p-16 flex flex-col justify-center">
+                <div className="flex items-center space-x-2 mb-6">
+                  <span className="px-4 py-1 rounded-full bg-pink-100 text-pink-600 text-xs font-bold uppercase tracking-widest">
+                    Maternity Special
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-neutral-900 mb-6 tracking-tight">
+                  {t('buntisAlert')}!
+                </h2>
+                <p className="text-xl text-neutral-600 mb-8 leading-relaxed">
+                  Planning for your little one’s arrival? Get our all-inclusive <span className="text-pink-600 font-bold">{t('normalDelivery')}</span> for just <span className="text-neutral-900 font-black">PHP 15,000</span>!
+                </p>
+                <div className="space-y-4 mb-10">
+                  <div className="flex items-center space-x-3 text-neutral-700">
+                    <CheckCircle2 className="text-pink-500" size={20} />
+                    <span className="font-medium">2 Days Ward Accommodation</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-neutral-700">
+                    <CheckCircle2 className="text-pink-500" size={20} />
+                    <span className="font-medium">Newborn Hearing Test Included</span>
+                  </div>
+                  <div className="flex items-center space-x-3 text-neutral-700">
+                    <CheckCircle2 className="text-pink-500" size={20} />
+                    <span className="font-medium">OB & Pedia Professional Fees</span>
+                  </div>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link
+                    to="/packages"
+                    className="bg-pink-600 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-pink-700 transition-all shadow-lg shadow-pink-200 text-center"
+                  >
+                    View Package Details
+                  </Link>
+                  <a
+                    href="tel:09164324390"
+                    className="bg-white text-pink-600 border-2 border-pink-100 px-8 py-4 rounded-2xl font-bold text-lg hover:border-pink-600 transition-all text-center"
+                  >
+                    Inquire Now
+                  </a>
+                </div>
+                <p className="mt-8 text-pink-500 font-bold italic">"Alaga ni Nanay, Sigurado kay Baby!" 💗</p>
+              </div>
+              <div className="relative h-[400px] lg:h-auto">
+                <img
+                  src="https://images.unsplash.com/photo-1555252333-9f8e92e65ee9?auto=format&fit=crop&q=80&w=1000"
+                  alt="Mother and Baby"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-white lg:from-white/20 to-transparent"></div>
+              </div>
             </div>
           </div>
         </div>

@@ -5,8 +5,10 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, Phone, ArrowRight, Loader2 } from 'lucide-react';
+import { useLanguage } from '../LanguageContext';
 
 export const Login: React.FC = () => {
+  const { t } = useLanguage();
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -60,10 +62,10 @@ export const Login: React.FC = () => {
       >
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-neutral-900 mb-2">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+            {isLogin ? t('welcomeBack') : t('createAccount')}
           </h2>
           <p className="text-neutral-500">
-            {isLogin ? 'Login to access your dashboard' : 'Join Zamboanga Puericulture Center today'}
+            {isLogin ? t('loginToAccess') : t('joinZPC')}
           </p>
         </div>
 
@@ -77,7 +79,7 @@ export const Login: React.FC = () => {
           {!isLogin && (
             <>
               <div className="space-y-1">
-                <label className="text-sm font-bold text-neutral-700 ml-1">Full Name</label>
+                <label className="text-sm font-bold text-neutral-700 ml-1">{t('fullName')}</label>
                 <div className="relative">
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={20} />
                   <input
@@ -91,7 +93,7 @@ export const Login: React.FC = () => {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-bold text-neutral-700 ml-1">Phone Number</label>
+                <label className="text-sm font-bold text-neutral-700 ml-1">{t('phoneNumber')}</label>
                 <div className="relative">
                   <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={20} />
                   <input
@@ -105,21 +107,21 @@ export const Login: React.FC = () => {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="text-sm font-bold text-neutral-700 ml-1">I am a...</label>
+                <label className="text-sm font-bold text-neutral-700 ml-1">{t('iamA')}</label>
                 <select
                   className="w-full px-4 py-3 bg-neutral-50 border border-neutral-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
                   value={formData.role}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value as any })}
                 >
-                  <option value="patient">Patient</option>
-                  <option value="doctor">Doctor</option>
+                  <option value="patient">{t('patient')}</option>
+                  <option value="doctor">{t('doctor')}</option>
                 </select>
               </div>
             </>
           )}
 
           <div className="space-y-1">
-            <label className="text-sm font-bold text-neutral-700 ml-1">Email Address</label>
+            <label className="text-sm font-bold text-neutral-700 ml-1">{t('emailAddress')}</label>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={20} />
               <input
@@ -134,7 +136,7 @@ export const Login: React.FC = () => {
           </div>
 
           <div className="space-y-1">
-            <label className="text-sm font-bold text-neutral-700 ml-1">Password</label>
+            <label className="text-sm font-bold text-neutral-700 ml-1">{t('password')}</label>
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={20} />
               <input
@@ -157,7 +159,7 @@ export const Login: React.FC = () => {
               <Loader2 className="animate-spin" size={24} />
             ) : (
               <>
-                {isLogin ? 'Login' : 'Sign Up'}
+                {isLogin ? t('login') : t('signUp')}
                 <ArrowRight className="ml-2" size={20} />
               </>
             )}
@@ -169,7 +171,7 @@ export const Login: React.FC = () => {
             onClick={() => setIsLogin(!isLogin)}
             className="text-emerald-600 font-bold hover:underline"
           >
-            {isLogin ? "Don't have an account? Sign Up" : 'Already have an account? Login'}
+            {isLogin ? t('noAccount') : t('alreadyHaveAccount')}
           </button>
         </div>
       </motion.div>

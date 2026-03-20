@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthProvider';
+import { useLanguage } from '../LanguageContext';
 import { auth } from '../firebase';
-import { LogOut, User, LayoutDashboard, Calendar, FileText, Settings, Menu, X } from 'lucide-react';
+import { LogOut, User, LayoutDashboard, Calendar, FileText, Settings, Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, profile } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
@@ -16,10 +18,11 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   };
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Doctors', path: '/doctors' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('home'), path: '/' },
+    { name: t('about'), path: '/about' },
+    { name: t('doctors'), path: '/doctors' },
+    { name: t('packages'), path: '/packages' },
+    { name: t('contact'), path: '/contact' },
   ];
 
   const dashboardItems = profile ? [
@@ -47,14 +50,31 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <Link key={item.name} to={item.path} className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">
+                <Link key={item.path} to={item.path} className="text-neutral-600 hover:text-emerald-600 font-medium transition-colors">
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Language Switcher */}
+              <div className="flex items-center bg-neutral-100 rounded-lg p-1">
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`px-2 py-1 text-xs font-bold rounded ${language === 'en' ? 'bg-white text-emerald-600 shadow-sm' : 'text-neutral-500'}`}
+                >
+                  EN
+                </button>
+                <button
+                  onClick={() => setLanguage('tl')}
+                  className={`px-2 py-1 text-xs font-bold rounded ${language === 'tl' ? 'bg-white text-emerald-600 shadow-sm' : 'text-neutral-500'}`}
+                >
+                  TL
+                </button>
+              </div>
+
               {user ? (
                 <div className="flex items-center space-x-4">
                   <Link to="/dashboard" className="bg-emerald-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-emerald-700 transition-all shadow-sm">
-                    Dashboard
+                    {t('dashboard')}
                   </Link>
                   <button onClick={handleLogout} className="text-neutral-500 hover:text-red-600 transition-colors">
                     <LogOut size={20} />
@@ -62,7 +82,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </div>
               ) : (
                 <Link to="/login" className="bg-emerald-600 text-white px-6 py-2 rounded-xl font-medium hover:bg-emerald-700 transition-all shadow-sm">
-                  Login
+                  {t('login')}
                 </Link>
               )}
             </div>
@@ -86,9 +106,27 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               className="md:hidden bg-white border-t border-neutral-100 overflow-hidden"
             >
               <div className="px-4 pt-2 pb-6 space-y-2">
+                {/* Language Switcher Mobile */}
+                <div className="flex items-center space-x-4 px-3 py-2 border-b border-neutral-100 mb-2">
+                  <Globe size={18} className="text-neutral-400" />
+                  <button
+                    onClick={() => setLanguage('en')}
+                    className={`text-sm font-bold ${language === 'en' ? 'text-emerald-600' : 'text-neutral-400'}`}
+                  >
+                    English
+                  </button>
+                  <span className="text-neutral-200">|</span>
+                  <button
+                    onClick={() => setLanguage('tl')}
+                    className={`text-sm font-bold ${language === 'tl' ? 'text-emerald-600' : 'text-neutral-400'}`}
+                  >
+                    Tagalog
+                  </button>
+                </div>
+
                 {navItems.map((item) => (
                   <Link
-                    key={item.name}
+                    key={item.path}
                     to={item.path}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block px-3 py-2 text-neutral-600 font-medium"
@@ -103,13 +141,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="block px-3 py-2 text-emerald-600 font-bold"
                     >
-                      Dashboard
+                      {t('dashboard')}
                     </Link>
                     <button
                       onClick={handleLogout}
                       className="block w-full text-left px-3 py-2 text-red-600 font-medium"
                     >
-                      Logout
+                      {t('logout')}
                     </button>
                   </>
                 ) : (
@@ -118,7 +156,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block px-3 py-2 text-emerald-600 font-bold"
                   >
-                    Login
+                    {t('login')}
                   </Link>
                 )}
               </div>
@@ -152,6 +190,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               <ul className="space-y-2 text-neutral-400">
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/doctors">Our Doctors</Link></li>
+                <li><Link to="/packages">Maternity Packages</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
                 <li><Link to="/privacy">Privacy Policy</Link></li>
               </ul>
