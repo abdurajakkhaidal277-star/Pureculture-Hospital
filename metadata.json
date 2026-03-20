@@ -1,0 +1,9 @@
+{
+  "name": "Pureculture Hospital",
+  "description": "A comprehensive hospital management system featuring patient booking, doctor dashboards, admin panels, and billing integration.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
